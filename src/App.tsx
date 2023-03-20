@@ -1,3 +1,3 @@
 export const App = () => {
-    return <div>MyApp</div>
+    return <div>Update</div>
 }

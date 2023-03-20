@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/pet-shelter-app/static/js/main.1cfc021c.js",
+    "index.html": "/pet-shelter-app/index.html",
+    "main.1cfc021c.js.map": "/pet-shelter-app/static/js/main.1cfc021c.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.1cfc021c.js"
+  ]
+}

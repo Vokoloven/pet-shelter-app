@@ -6,15 +6,17 @@ import Modal from '@mui/material/Modal'
 import SavingsIcon from '@mui/icons-material/Savings'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
+import { deepOrange } from '@mui/material/colors'
 
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    minWidth: 400,
+    backgroundColor: 'background.paper',
+    color: 'primary.contrastText',
+    border: `2px solid`,
     boxShadow: 24,
     p: 4,
 }
@@ -31,6 +33,7 @@ export function BasicModal() {
                 onClick={handleOpen}
                 variant="outlined"
                 sx={(theme) => ({
+                    borderColor: 'secondary.main',
                     '&:hover': {
                         backgroundColor: 'secondary.light',
                     },
@@ -49,17 +52,31 @@ export function BasicModal() {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box
+                    sx={(theme) => ({
+                        ...style,
+                        borderColor: mode === 'dark' ? deepOrange[500] : '#000',
+                        [theme.breakpoints.down('sm')]: {
+                            minWidth: 250,
+                        },
+                    })}
+                >
                     <Typography
                         id="modal-modal-title"
                         variant="h6"
                         component="h2"
                     >
-                        Text in a modal
+                        Donates
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor
-                        ligula.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Atque, illum laboriosam! Ipsam et nam nesciunt at eum
+                        dolor corrupti, possimus ratione neque quisquam
+                        perspiciatis dolorum totam, eaque unde nisi magni? Lorem
+                        ipsum dolor sit amet consectetur adipisicing elit. Alias
+                        possimus atque ad reiciendis molestias! At alias
+                        necessitatibus soluta iusto a, ex assumenda repudiandae
+                        amet dolore ab unde sapiente omnis quaerat.
                     </Typography>
                 </Box>
             </Modal>

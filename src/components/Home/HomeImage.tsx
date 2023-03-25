@@ -18,7 +18,7 @@ export const HomeImage = () => {
                     position: 'absolute',
                     left: 0,
                     [theme.breakpoints.down('sm')]: {
-                        height: 'calc(100vh - 175px)',
+                        height: 'calc(100vh - 170px)',
                     },
                 })}
             />

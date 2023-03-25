@@ -31,7 +31,8 @@ export function BasicModal() {
                 onClick={handleOpen}
                 variant="outlined"
                 sx={(theme) => ({
-                    borderColor: 'primary.main',
+                    borderColor:
+                        mode === 'dark' ? 'secondary.main' : 'primary.main',
                     '&:hover': {
                         backgroundColor: 'secondary.light',
                     },

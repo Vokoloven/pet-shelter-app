@@ -10,16 +10,16 @@ export const HomeImage = () => {
                     backgroundImage: `url(${LeftCorner})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'left',
+                    // backgroundPosition: 'left',
                 }}
                 sx={(theme) => ({
                     height: 'calc(100vh - 78px)',
-                    width: '100vw',
+                    width: '100%',
                     position: 'absolute',
                     left: 0,
+                    top: 0,
                     [theme.breakpoints.down('sm')]: {
-                        height: 'calc(100vh - 65px)',
-                        backgroundSize: 'cover',
+                        height: 'calc(100vh - 64px)',
                     },
                 })}
             />
@@ -30,13 +30,16 @@ export const HomeImage = () => {
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom',
                 }}
-                sx={{
-                    height: 'calc(100vh - 450px)',
+                sx={(theme) => ({
+                    height: 'calc(100vh - 78px)',
                     width: '25vw',
                     position: 'absolute',
                     right: 0,
-                    bottom: 0,
-                }}
+                    top: 0,
+                    [theme.breakpoints.down('sm')]: {
+                        height: 'calc(100vh - 64px)',
+                    },
+                })}
             />
         </Box>
     )

@@ -5,7 +5,7 @@ import { HomeTypography } from './HomeTypography'
 
 export function HomeBackground() {
     return (
-        <Box>
+        <Box sx={{ position: 'relative' }}>
             <HomeTypography />
             <HomeImage />
             <HomeButtons />

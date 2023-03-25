@@ -31,8 +31,8 @@ export const HomeTypography = () => {
                         maxWidth: '400px',
                     },
                     [theme.breakpoints.down('sm')]: {
-                        top: 50,
-                        left: 60,
+                        top: -50,
+                        left: 20,
                         fontSize: '35px',
                         maxWidth: '200px',
                     },
@@ -66,8 +66,8 @@ export const HomeTypography = () => {
                         left: 50,
                     },
                     [theme.breakpoints.down('sm')]: {
-                        top: -900,
-                        left: 100,
+                        top: -1000,
+                        left: 60,
                         fontSize: '20px',
                         maxWidth: '180px',
                     },

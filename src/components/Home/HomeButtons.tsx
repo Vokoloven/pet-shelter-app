@@ -26,7 +26,7 @@ export const HomeButtons = () => {
                     width: '300px',
                 },
                 [theme.breakpoints.down('sm')]: {
-                    transform: 'translate(100%, 500%)',
+                    transform: 'translate(100%, 350%)',
                     width: '150px',
                     flexDirection: 'column',
                 },

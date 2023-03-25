@@ -15,7 +15,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     minWidth: 400,
     backgroundColor: 'background.paper',
-    color: 'primary.contrastText',
     border: `2px solid`,
     boxShadow: 24,
     p: 4,
@@ -55,6 +54,10 @@ export function BasicModal() {
                 <Box
                     sx={(theme) => ({
                         ...style,
+                        color:
+                            mode === 'dark'
+                                ? 'primary.contrastText'
+                                : 'secondary.contrastText',
                         borderColor: mode === 'dark' ? deepOrange[500] : '#000',
                         [theme.breakpoints.down('sm')]: {
                             minWidth: 250,

@@ -20,7 +20,10 @@
         "noEmitOnError": false,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noImplicitReturns": true
+        "noImplicitReturns": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true
     },
     "include": ["src"],
     "exclude": ["node_modules"]

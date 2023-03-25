@@ -1,19 +1,19 @@
-// import { IPaletteMode } from 'types/globalTypes'
-import { grey, deepOrange, blueGrey } from '@mui/material/colors'
+import { CustomTheme } from 'types/globalTypes'
+import { grey, deepOrange, green, orange } from '@mui/material/colors'
 
-export const getDesignTokens = (mode: any) => ({
+export const getDesignTokens = (mode: string): CustomTheme => ({
     palette: {
         mode,
         ...(mode === 'light'
             ? {
                   // palette values for light mode
                   primary: {
-                      light: blueGrey[50],
-                      main: blueGrey[50],
-                      dark: blueGrey[900],
-                      contrastText: '#000',
+                      light: deepOrange[50],
+                      main: orange[500],
+                      dark: orange[900],
+                      contrastText: '#fff',
                   },
-                  divider: blueGrey[200],
+                  divider: green[200],
                   text: {
                       primary: grey[900],
                       secondary: grey[800],
@@ -55,7 +55,7 @@ export const getDesignTokens = (mode: any) => ({
             xs: 0,
             sm: 600,
             md: 900,
-            lg: 1200,
+            lg: 1300,
             xl: 3840,
         },
     },

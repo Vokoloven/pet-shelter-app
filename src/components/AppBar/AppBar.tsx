@@ -15,6 +15,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { themeToggler } from 'redux/themeSlice/themeSlice'
 import { NavLink } from 'react-router-dom'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 
 const pages = ['Home', 'Gallery', 'Contacts', 'About']
 
@@ -55,8 +57,6 @@ export function ResponsiveAppBar() {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="/pet-shelter-app"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -112,10 +112,6 @@ export function ResponsiveAppBar() {
                                             ? '/'
                                             : `/${page.toLowerCase()}`
                                     }
-                                    style={{
-                                        textDecoration: 'none',
-                                        color: 'inherit',
-                                    }}
                                 >
                                     <MenuItem onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center">
@@ -132,15 +128,13 @@ export function ResponsiveAppBar() {
                     <Typography
                         variant="h5"
                         noWrap
-                        component="a"
-                        href="/pet-shelter-app"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '.2rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
@@ -161,10 +155,6 @@ export function ResponsiveAppBar() {
                                         ? '/'
                                         : `/${page.toLowerCase()}`
                                 }
-                                style={{
-                                    textDecoration: 'none',
-                                    color: 'inherit',
-                                }}
                             >
                                 <Button
                                     onClick={handleCloseNavMenu}
@@ -182,6 +172,7 @@ export function ResponsiveAppBar() {
                             </NavLink>
                         ))}
                     </Box>
+                    {mode === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
                     <Switch
                         {...label}
                         color="secondary"

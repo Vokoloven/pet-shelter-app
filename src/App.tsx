@@ -9,6 +9,7 @@ import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { About } from 'components/About/About'
 import { Contacts } from 'components/Contacts/Contacts'
 import { Gallery } from 'components/Gallery.tsx/Gallery'
+import { NotFound } from 'components/NotFound/NotFound'
 
 export const App = () => {
     const { mode } = useSelector(selectTheme)
@@ -33,6 +34,7 @@ export const App = () => {
                 <Route path={'gallery'} element={<Gallery />} />
                 <Route path={'contacts'} element={<Contacts />} />
                 <Route path={'about'} element={<About />} />
+                <Route path={'*'} element={<NotFound />} />
             </Routes>
         </ThemeProvider>
     )

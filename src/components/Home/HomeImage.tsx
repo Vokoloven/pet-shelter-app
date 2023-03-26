@@ -18,7 +18,7 @@ export const HomeImage = () => {
                         backgroundSize: 'contain',
                     },
                     [theme.breakpoints.down('sm')]: {
-                        height: `100vh - 1px`,
+                        height: `calc(100vh - 85px)`,
                         backgroundSize: 'cover',
                     },
                 })}
@@ -32,7 +32,7 @@ export const HomeImage = () => {
                     height: 'calc(100vh - 85px)',
                     width: '50vw',
                     [theme.breakpoints.down('sm')]: {
-                        height: `100vh - 1px`,
+                        height: `calc(100vh - 85px)`,
                     },
                 })}
             />

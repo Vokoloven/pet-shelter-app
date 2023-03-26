@@ -120,6 +120,25 @@ export function ResponsiveAppBar() {
                                     </MenuItem>
                                 </NavLink>
                             ))}
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                {mode === 'light' ? (
+                                    <LightModeIcon />
+                                ) : (
+                                    <DarkModeIcon />
+                                )}
+                                <Switch
+                                    {...label}
+                                    color="secondary"
+                                    onChange={onChangeHandler}
+                                    checked={mode === 'dark' ? true : false}
+                                />
+                            </Box>
                         </Menu>
                     </Box>
                     <PetsIcon
@@ -172,13 +191,24 @@ export function ResponsiveAppBar() {
                             </NavLink>
                         ))}
                     </Box>
-                    {mode === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
-                    <Switch
-                        {...label}
-                        color="secondary"
-                        onChange={onChangeHandler}
-                        checked={mode === 'dark' ? true : false}
-                    />
+                    <Box
+                        sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            alignItems: 'center',
+                        }}
+                    >
+                        {mode === 'light' ? (
+                            <LightModeIcon />
+                        ) : (
+                            <DarkModeIcon />
+                        )}
+                        <Switch
+                            {...label}
+                            color="secondary"
+                            onChange={onChangeHandler}
+                            checked={mode === 'dark' ? true : false}
+                        />
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>

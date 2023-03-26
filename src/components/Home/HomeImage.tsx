@@ -4,40 +4,35 @@ import Box from '@mui/material/Box'
 
 export const HomeImage = () => {
     return (
-        <Box>
+        <Box sx={{ display: 'flex' }}>
             <Box
-                style={{
+                sx={(theme) => ({
                     backgroundImage: `url(${LeftCorner})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
-                    // backgroundPosition: 'left',
-                }}
-                sx={(theme) => ({
-                    height: 'calc(100vh - 78px)',
+                    backgroundPosition: 'left top',
+                    height: 'calc(100vh - 85px)',
                     width: '100%',
-                    position: 'absolute',
-                    left: 0,
-                    top: 0,
+                    [theme.breakpoints.down('md')]: {
+                        height: 'calc(100vh - 85px)',
+                        backgroundSize: 'cover',
+                    },
                     [theme.breakpoints.down('sm')]: {
-                        height: 'calc(100vh - 64px)',
+                        height: 'calc(100vh - 180px)',
+                        backgroundSize: 'cover',
                     },
                 })}
             />
             <Box
-                style={{
+                sx={(theme) => ({
                     backgroundImage: `url(${MainBg})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'bottom',
-                }}
-                sx={(theme) => ({
-                    height: 'calc(100vh - 78px)',
-                    width: '25vw',
-                    position: 'absolute',
-                    right: 0,
-                    top: 0,
+                    backgroundPosition: 'right bottom',
+                    height: 'calc(100vh - 85px)',
+                    width: '50vw',
                     [theme.breakpoints.down('sm')]: {
-                        height: 'calc(100vh - 64px)',
+                        height: 'calc(100vh - 180px)',
                     },
                 })}
             />

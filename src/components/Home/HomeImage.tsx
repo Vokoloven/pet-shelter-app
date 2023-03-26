@@ -1,7 +1,6 @@
 import LeftCorner from 'images/leftCorner.png'
 import MainBg from 'images/mainBg.png'
 import Box from '@mui/material/Box'
-import { px2vh } from 'utils/responsiveWidth'
 
 export const HomeImage = () => {
     return (
@@ -19,7 +18,7 @@ export const HomeImage = () => {
                         backgroundSize: 'contain',
                     },
                     [theme.breakpoints.down('sm')]: {
-                        height: `${px2vh(455, 600)}`,
+                        height: `100vh - 1px`,
                         backgroundSize: 'cover',
                     },
                 })}
@@ -33,7 +32,7 @@ export const HomeImage = () => {
                     height: 'calc(100vh - 85px)',
                     width: '50vw',
                     [theme.breakpoints.down('sm')]: {
-                        height: `${px2vh(455, 600)}`,
+                        height: `100vh - 1px`,
                     },
                 })}
             />

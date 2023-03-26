@@ -24,7 +24,7 @@ export const HomeButtons = () => {
                 [theme.breakpoints.down('md')]: {
                     width: `${px2vw(400, 900)}`,
                     top: '65%',
-                    left: '35%',
+                    left: '25%',
                 },
                 [theme.breakpoints.down('sm')]: {
                     flexDirection: 'column',

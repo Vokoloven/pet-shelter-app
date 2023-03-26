@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/pet-shelter-app/static/js/main.2547fffe.js",
+    "main.js": "/pet-shelter-app/static/js/main.c0cea72e.js",
     "static/media/mainBg.png": "/pet-shelter-app/static/media/mainBg.5ab31c84df138f70fb86.png",
     "static/media/leftCorner.png": "/pet-shelter-app/static/media/leftCorner.b866521c07f6d4c9f55f.png",
     "static/media/404.png": "/pet-shelter-app/static/media/404.7207db2d9ae78df7e38a.png",
     "index.html": "/pet-shelter-app/index.html",
-    "main.2547fffe.js.map": "/pet-shelter-app/static/js/main.2547fffe.js.map"
+    "main.c0cea72e.js.map": "/pet-shelter-app/static/js/main.c0cea72e.js.map"
   },
   "entrypoints": [
-    "static/js/main.2547fffe.js"
+    "static/js/main.c0cea72e.js"
   ]
 }

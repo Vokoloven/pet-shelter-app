@@ -1,6 +1,7 @@
 import LeftCorner from 'images/leftCorner.png'
 import MainBg from 'images/mainBg.png'
 import Box from '@mui/material/Box'
+import { innerHight } from 'utils/responsiveWidth'
 
 export const HomeImage = () => {
     return (
@@ -15,10 +16,10 @@ export const HomeImage = () => {
                     width: '100%',
                     [theme.breakpoints.down('md')]: {
                         height: 'calc(100vh - 85px)',
-                        backgroundSize: 'contain',
+                        backgroundSize: 'cover',
                     },
                     [theme.breakpoints.down('sm')]: {
-                        height: `calc(100vh - 85px)`,
+                        height: `${innerHight}`,
                         backgroundSize: 'cover',
                     },
                 })}
@@ -32,7 +33,7 @@ export const HomeImage = () => {
                     height: 'calc(100vh - 85px)',
                     width: '50vw',
                     [theme.breakpoints.down('sm')]: {
-                        height: `calc(100vh - 85px)`,
+                        height: `${innerHight}`,
                     },
                 })}
             />

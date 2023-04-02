@@ -1,8 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
+
 import { themeSlice } from './themeSlice/themeSlice'
+import { authSlice } from './authSlice/authSlice'
+import { getDataSlice } from './getDataSlice/getDataSlice'
 
 const rootReducer = combineReducers({
     [themeSlice.name]: themeSlice.reducer,
+    [authSlice.name]: authSlice.reducer,
+    [getDataSlice.name]: getDataSlice.reducer,
 })
 
 export const store = configureStore({

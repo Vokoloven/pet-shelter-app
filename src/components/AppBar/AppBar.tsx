@@ -17,8 +17,14 @@ import { themeToggler } from 'redux/themeSlice/themeSlice'
 import { NavLink } from 'react-router-dom'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
+import GoogleIcon from '@mui/icons-material/Google'
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { auth } from '../../firebase/firebaseConfig'
+import { authUser, authToken } from 'redux/authSlice/authSlice'
 
-const pages = ['Home', 'Gallery', 'Contacts', 'About']
+const pages = ['Home', 'Gallery', 'Contacts', 'About', 'AddPet']
+
+const provider = new GoogleAuthProvider()
 
 export function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -45,6 +51,26 @@ export function ResponsiveAppBar() {
         if (mode === 'dark') {
             dispatch(themeToggler('light'))
         }
+    }
+
+    const signInGoogleAccount = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const credential =
+                    GoogleAuthProvider.credentialFromResult(result)
+                const token = credential?.accessToken
+                const user = result.user
+                if (token && user) {
+                    dispatch(authToken(token))
+                    dispatch(authUser(user))
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code
+                const errorMessage = error.message
+                const email = error.customData.email
+                const credential = GoogleAuthProvider.credentialFromError(error)
+            })
     }
 
     return (
@@ -197,6 +223,16 @@ export function ResponsiveAppBar() {
                             alignItems: 'center',
                         }}
                     >
+                        <IconButton onClick={signInGoogleAccount}>
+                            <GoogleIcon
+                                sx={{
+                                    color:
+                                        mode === 'light'
+                                            ? 'primary.contrastText'
+                                            : 'secondary.main',
+                                }}
+                            />
+                        </IconButton>
                         {mode === 'light' ? (
                             <LightModeIcon />
                         ) : (

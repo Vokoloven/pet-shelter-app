@@ -1,72 +1,110 @@
-import React from 'react'
 import MultilineTextFields from './Input'
-import { useState } from 'react'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, setDoc } from 'firebase/firestore'
 import { storage, db } from '../../firebase/firebaseConfig'
+import {
+    useForm,
+    SubmitHandler,
+    SubmitErrorHandler,
+    FieldErrors,
+} from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schemaAddPet } from 'helpers/validation/schema'
+import { useSnackbar } from 'notistack'
+import nextId from 'react-id-generator'
+
+export type Inputs = {
+    name: string
+    age: number
+    description: string
+    photo: string
+    sex: string
+}
 
 export const AddPet = () => {
-    const [name, setName] = useState<string>('')
-    const [age, setAge] = useState<string>('')
-    const [description, setDescription] = useState<string>('')
-    const [photoUrl, setPhotoUrl] = useState<string | null>(null)
-
-    const randomId = Date.now()
+    const randomId = nextId()
     const storageRef = ref(storage, `photos/${randomId}`)
 
-    const onChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        let data = e.target as HTMLInputElement
-        const { id } = data
-        const { value } = data
+    const { register, handleSubmit, setValue } = useForm<Inputs>({
+        resolver: yupResolver(schemaAddPet),
+    })
 
-        switch (id) {
-            case 'name':
-                setName(value)
-                break
-            case 'age':
-                setAge(value)
-                break
-            case 'description':
-                setDescription(value)
-                break
-            default:
-                return
+    const { enqueueSnackbar } = useSnackbar()
+
+    const onSubmit: SubmitHandler<Inputs> = ({
+        name,
+        age,
+        description,
+        photo,
+        sex,
+    }) => {
+        const file = new File([photo[0]], 'photo', { type: 'image/jpeg' })
+
+        if (file !== null) {
+            uploadBytes(storageRef, file).then((snapshot) => {
+                if (snapshot) {
+                    getDownloadURL(ref(storage, `photos/${randomId}`)).then(
+                        (url) => {
+                            if (url) {
+                                onSubmitCat(
+                                    randomId,
+                                    name,
+                                    age,
+                                    description,
+                                    url,
+                                    sex
+                                )
+                                enqueueSnackbar('Cat added :)', {
+                                    variant: 'success',
+                                })
+                            }
+                        }
+                    )
+                }
+            })
         }
     }
-
-    const onChangeFileHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const data = e.target as HTMLInputElement
-        const { files } = data
-        if (files) {
-            const data = files[0]
-
-            const file = new File([data], 'photos', { type: 'image/jpg' })
-
-            if (file !== null) {
-                uploadBytes(storageRef, file).then((snapshot) => {
-                    console.log(snapshot, 'Uploaded a blob or file!')
-                    getPhotoUrl()
-                })
+    const onError: SubmitErrorHandler<Inputs> = (data) => {
+        const fields: Readonly<string[]> = [
+            'name',
+            'age',
+            'description',
+            'photo',
+            'sex',
+        ]
+        fields.map((item: string) => {
+            if (
+                data?.[item as keyof FieldErrors<Inputs>]?.message === undefined
+            ) {
+                return null
             }
-        }
-    }
 
-    const getPhotoUrl = () => {
-        getDownloadURL(ref(storage, `photos/${randomId}`)).then((url) => {
-            if (url) {
-                setPhotoUrl(url)
-            }
+            return enqueueSnackbar(
+                `${data?.[item as keyof FieldErrors<Inputs>]?.message}`,
+                {
+                    variant: 'error',
+                }
+            )
         })
     }
 
-    const onSubmitPhotoHandler = async () => {
+    const onSubmitCat = async (
+        randomId: string | null,
+        name: string,
+        age: number | null,
+        description: string,
+        photoUrl: string,
+        sex: string
+    ) => {
         try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const catsRef = await setDoc(doc(db, 'cats', `${randomId}`), {
                 id: randomId,
                 name,
                 age,
                 description,
                 photoUrl,
+                sex,
             })
         } catch (e) {
             console.error('Error adding document: ', e)
@@ -75,12 +113,11 @@ export const AddPet = () => {
 
     return (
         <MultilineTextFields
-            onChangeHandler={onChangeHandler}
-            onChangeFileHandler={onChangeFileHandler}
-            onSubmitPhotoHandler={onSubmitPhotoHandler}
-            age={age}
-            name={name}
-            description={description}
+            register={register}
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+            onError={onError}
+            setValue={setValue}
         />
     )
 }

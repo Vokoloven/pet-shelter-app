@@ -5,35 +5,40 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { Button } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
-import React from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 
-type Handler = {
-    onChangeHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void
-    onChangeFileHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
-    onSubmitPhotoHandler: () => void
-    name: string
-    age: string
-    description: string
-}
+import {
+    UseFormRegister,
+    UseFormHandleSubmit,
+    SubmitHandler,
+    SubmitErrorHandler,
+    UseFormSetValue,
+} from 'react-hook-form'
+import { Inputs } from './AddPet'
 
-type FormValues = {
-    name: string
-    age: string
-    description: string
+type Props = {
+    register: UseFormRegister<Inputs>
+    handleSubmit: UseFormHandleSubmit<Inputs>
+    onSubmit: SubmitHandler<Inputs>
+    onError: SubmitErrorHandler<Inputs>
+    setValue: UseFormSetValue<Inputs>
 }
 
 export default function MultilineTextFields({
-    onChangeHandler,
-    onChangeFileHandler,
-    onSubmitPhotoHandler,
-    age,
-    name,
-    description,
-}: Handler) {
+    register,
+    handleSubmit,
+    onSubmit,
+    onError,
+    setValue,
+}: Props) {
     const { mode } = useSelector(selectTheme)
-    const { register, handleSubmit } = useForm<FormValues>()
-    const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data)
+
+    const handleChange = (event: SelectChangeEvent) => {
+        setValue('sex', event.target.value as string)
+    }
 
     return (
         <Box
@@ -43,28 +48,21 @@ export default function MultilineTextFields({
             }}
             noValidate
             autoComplete="off"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmit, onError)}
         >
-            <Box
-                sx={{ display: 'flex', flexDirection: 'column' }}
-                onChange={onChangeHandler}
-            >
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <TextField
                     id="name"
                     label="Name"
-                    multiline
                     maxRows={4}
                     variant="standard"
-                    value={name}
                     {...register('name')}
                 />
                 <TextField
                     id="age"
                     label="Age"
-                    multiline
                     maxRows={4}
                     variant="standard"
-                    value={age}
                     {...register('age')}
                 />
                 <TextField
@@ -73,8 +71,24 @@ export default function MultilineTextFields({
                     multiline
                     rows={4}
                     variant="standard"
-                    value={description}
+                    {...register('description')}
                 />
+            </Box>
+            <Box sx={{ minWidth: 120 }}>
+                <FormControl sx={{ mt: 3, width: '100px' }}>
+                    <InputLabel id="demo-simple-select-label">Sex</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        {...register('sex')}
+                        label="Sex"
+                        onChange={handleChange}
+                        defaultValue={''}
+                    >
+                        <MenuItem value={'Male'}>Male</MenuItem>
+                        <MenuItem value={'Female'}>Female</MenuItem>
+                    </Select>
+                </FormControl>
             </Box>
             <Box sx={{ display: 'flex', mt: 3 }}>
                 <Button
@@ -90,7 +104,6 @@ export default function MultilineTextFields({
                         backgroundColor:
                             mode === 'dark' ? 'secondary.main' : 'primary.main',
                     }}
-                    onClick={onSubmitPhotoHandler}
                 >
                     Add Pet
                 </Button>
@@ -104,7 +117,7 @@ export default function MultilineTextFields({
                         hidden
                         accept="image/*"
                         type="file"
-                        onChange={onChangeFileHandler}
+                        {...register('photo')}
                     />
                     <PhotoCamera
                         sx={{

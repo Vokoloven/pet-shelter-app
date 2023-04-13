@@ -8,7 +8,12 @@ export const schemaAddPet = yup.object().shape({
         .matches(regExp.nameRegExp, 'Please fill the name field')
         .min(2)
         .max(16),
-    age: yup.number().required().positive().integer(),
+    age: yup.number().required().positive(),
+    sex: yup
+        .mixed()
+        .oneOf(['Male', 'Female'] as const)
+        .defined()
+        .required(),
     description: yup
         .string()
         .matches(regExp.descriptionRexExp, 'Please fill the description field')
@@ -45,7 +50,14 @@ export const schemaAddPet = yup.object().shape({
             }
             return (
                 (value && value[0].type === 'image/jpeg') ||
-                value[0].type === 'image/png'
+                (value && value[0].type === 'image/png')
             )
         }),
+})
+
+export const schemaUserAccess = yup.object().shape({
+    email: yup
+        .string()
+        .matches(regExp.emailRegExp, 'Please, write correct email'),
+    checkbox: yup.mixed().oneOf(['admin', 'moderator']).defined().required(),
 })

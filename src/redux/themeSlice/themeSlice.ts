@@ -1,8 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer } from 'redux-persist'
 
 export interface CounterState {
     mode: string
+}
+
+const persistConfig = {
+    key: 'theme',
+    storage,
 }
 
 const initialState: CounterState = {
@@ -18,5 +25,10 @@ export const themeSlice = createSlice({
         },
     },
 })
+
+export const persistedThemeReducer = persistReducer(
+    persistConfig,
+    themeSlice.reducer
+)
 
 export const { themeToggler } = themeSlice.actions

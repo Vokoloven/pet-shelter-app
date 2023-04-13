@@ -18,9 +18,9 @@ const persistConfig = {
 const initialState: IAuthState = {
     user: {
         uid: '',
-        displayName: '',
-        photoURL: '',
-        email: '',
+        displayName: null,
+        photoURL: null,
+        email: null,
     },
     token: '',
     loggedIn: false,
@@ -43,9 +43,9 @@ export const authSlice = createSlice({
         logOutUser: (state) => {
             state.loggedIn = false
             state.user.uid = ''
-            state.user.displayName = ''
-            state.user.photoURL = ''
-            state.user.email = ''
+            state.user.displayName = null
+            state.user.photoURL = null
+            state.user.email = null
             state.token = ''
         },
     },

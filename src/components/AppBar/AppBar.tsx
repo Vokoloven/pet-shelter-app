@@ -18,6 +18,7 @@ import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { themeToggler } from 'redux/themeSlice/themeSlice'
 import { NavLink } from 'react-router-dom'
 import LightModeIcon from '@mui/icons-material/LightMode'
+import AddModeratorIcon from '@mui/icons-material/AddModerator'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import GoogleIcon from '@mui/icons-material/Google'
 import Tooltip from '@mui/material/Tooltip'
@@ -31,23 +32,46 @@ import { selectAuth } from 'redux/authSlice/selectAuth'
 import { Outlet } from 'react-router-dom'
 import { useState } from 'react'
 import { useSnackbar } from 'notistack'
+import { getAccessUserData } from 'redux/accessSlice/getAccessUserData.service'
+import { AppDispatch } from 'redux/store'
+import { useNavigate } from 'react-router-dom'
 
-const pages: Readonly<string[]> = [
-    'Home',
-    'Gallery',
-    'Contacts',
-    'About',
-    'AddPet',
-    'UserAccess',
-]
-const settings: Readonly<string[]> = ['Logout']
+const pages: Readonly<string[]> = ['Home', 'Gallery', 'Contacts', 'About']
+
+enum Access {
+    ADMIN,
+    MODERATOR,
+}
+
+type UserAccess = {
+    access: number | null
+}
+
 const provider = new GoogleAuthProvider()
 
-export function ResponsiveAppBar() {
+export function ResponsiveAppBar({ access }: UserAccess) {
     const { mode } = useSelector(selectTheme)
     const { user, loggedIn } = useSelector(selectAuth)
     const { enqueueSnackbar } = useSnackbar()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
+
+    function createMenuData(tab: string | null, access: number | null) {
+        if (tab === 'UserAccess' && access === Access.ADMIN) {
+            return tab
+        } else if (
+            (tab === 'AddPet' && access === Access.MODERATOR) ||
+            access === Access.ADMIN
+        ) {
+            return tab
+        } else {
+            return null
+        }
+    }
+    const menuData = [
+        createMenuData('UserAccess', access),
+        createMenuData('AddPet', access),
+    ]
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
@@ -86,6 +110,7 @@ export function ResponsiveAppBar() {
                 .then(() => {
                     dispatch(logOutUser())
                     setAnchorEl(null)
+                    navigate('/')
                     enqueueSnackbar('You logged out', { variant: 'success' })
                 })
                 .catch((error) => {
@@ -118,6 +143,7 @@ export function ResponsiveAppBar() {
                 if (token && user) {
                     dispatch(authToken(token))
                     dispatch(authUser(user))
+                    dispatch(getAccessUserData())
                     enqueueSnackbar('You logged in', { variant: 'success' })
                 }
             })
@@ -152,7 +178,6 @@ export function ResponsiveAppBar() {
                         >
                             CATS SHELTER
                         </Typography>
-
                         <Box
                             sx={{
                                 flexGrow: 1,
@@ -395,10 +420,81 @@ export function ResponsiveAppBar() {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    {settings.map((setting) => (
-                                        <MenuItem
-                                            key={setting}
-                                            onClick={handleCloseUserMenu}
+                                    {menuData.map(
+                                        (item, index) =>
+                                            item !== null && (
+                                                <NavLink
+                                                    key={index}
+                                                    to={item.toLowerCase()}
+                                                    onClick={
+                                                        handleCloseUserMenu
+                                                    }
+                                                >
+                                                    <MenuItem
+                                                        sx={{
+                                                            color:
+                                                                mode === 'light'
+                                                                    ? 'primary.main'
+                                                                    : 'secondary.main',
+                                                        }}
+                                                    >
+                                                        <Typography
+                                                            textAlign="center"
+                                                            sx={{
+                                                                color:
+                                                                    mode ===
+                                                                    'light'
+                                                                        ? 'primary.main'
+                                                                        : 'secondary.main',
+                                                            }}
+                                                        >
+                                                            {item ===
+                                                                'UserAccess' &&
+                                                                'User Access'}
+                                                            {item ===
+                                                                'AddPet' &&
+                                                                'Add Pet'}
+                                                        </Typography>
+                                                        {item ===
+                                                            'UserAccess' && (
+                                                            <AddModeratorIcon
+                                                                sx={{
+                                                                    ml: 1,
+                                                                    color:
+                                                                        mode ===
+                                                                        'light'
+                                                                            ? 'primary.main'
+                                                                            : 'secondary.main',
+                                                                }}
+                                                            />
+                                                        )}
+                                                        {item === 'AddPet' && (
+                                                            <PetsIcon
+                                                                sx={{
+                                                                    ml: 1,
+                                                                    color:
+                                                                        mode ===
+                                                                        'light'
+                                                                            ? 'primary.main'
+                                                                            : 'secondary.main',
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </MenuItem>
+                                                </NavLink>
+                                            )
+                                    )}
+                                    <MenuItem
+                                        onClick={handleCloseUserMenu}
+                                        sx={{
+                                            color:
+                                                mode === 'light'
+                                                    ? 'primary.main'
+                                                    : 'secondary.main',
+                                        }}
+                                    >
+                                        <Typography
+                                            textAlign="center"
                                             sx={{
                                                 color:
                                                     mode === 'light'
@@ -406,30 +502,18 @@ export function ResponsiveAppBar() {
                                                         : 'secondary.main',
                                             }}
                                         >
-                                            <Typography
-                                                textAlign="center"
-                                                sx={{
-                                                    color:
-                                                        mode === 'light'
-                                                            ? 'primary.main'
-                                                            : 'secondary.main',
-                                                }}
-                                            >
-                                                {setting}
-                                            </Typography>
-                                            {setting === 'Logout' && (
-                                                <LogoutIcon
-                                                    sx={{
-                                                        ml: 1,
-                                                        color:
-                                                            mode === 'light'
-                                                                ? 'primary.main'
-                                                                : 'secondary.main',
-                                                    }}
-                                                />
-                                            )}
-                                        </MenuItem>
-                                    ))}
+                                            Logout
+                                        </Typography>
+                                        <LogoutIcon
+                                            sx={{
+                                                ml: 1,
+                                                color:
+                                                    mode === 'light'
+                                                        ? 'primary.main'
+                                                        : 'secondary.main',
+                                            }}
+                                        />
+                                    </MenuItem>
                                 </Menu>
                             </Box>
                         )}

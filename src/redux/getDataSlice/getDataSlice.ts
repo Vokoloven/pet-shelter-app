@@ -22,7 +22,7 @@ export const getDataSlice = createSlice({
         })
         builder.addCase(getData.fulfilled, (state, { payload }) => {
             state.loading = 'succeeded'
-            state.data.push(payload)
+            state.data = [...payload]
         })
         builder.addCase(getData.rejected, (state) => {
             state.loading = 'failed'

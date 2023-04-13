@@ -3,6 +3,7 @@ import { persistStore } from 'redux-persist'
 import { themeSlice } from './themeSlice/themeSlice'
 import { authSlice } from './authSlice/authSlice'
 import { getDataSlice } from './getDataSlice/getDataSlice'
+import { accessUserSlice } from './accessSlice/accessSlice'
 import { persistedAuthReducer } from './authSlice/authSlice'
 import { persistedThemeReducer } from './themeSlice/themeSlice'
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
     [themeSlice.name]: persistedThemeReducer,
     [authSlice.name]: persistedAuthReducer,
     [getDataSlice.name]: getDataSlice.reducer,
+    [accessUserSlice.name]: accessUserSlice.reducer,
 })
 
 export const store = configureStore({

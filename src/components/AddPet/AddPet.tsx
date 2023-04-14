@@ -18,7 +18,8 @@ import { useSnackbar } from 'notistack'
 import { AppDispatch } from 'redux/store'
 import { getData } from 'redux/getDataSlice/getData.service'
 import { selectData } from 'redux/getDataSlice/selectData'
-import { deepOrange } from '@mui/material/colors'
+import { selectTheme } from 'redux/themeSlice/selectTheme'
+import { deepOrange, orange } from '@mui/material/colors'
 
 export type Inputs = {
     name: string
@@ -33,6 +34,7 @@ export const AddPet = () => {
     const id = useId()
     const storageRef = ref(storage, `photos/${id}`)
     const { loading } = useSelector(selectData)
+    const { mode } = useSelector(selectTheme)
 
     const { register, handleSubmit, setValue } = useForm<Inputs>({
         resolver: yupResolver(schemaAddPet),
@@ -111,7 +113,9 @@ export const AddPet = () => {
         <>
             {loading === 'pending' && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-                    <CircleLoader color={deepOrange[500]} />
+                    <CircleLoader
+                        color={mode === 'light' ? orange[500] : deepOrange[500]}
+                    />
                 </Box>
             )}
             {loading === 'succeeded' && (

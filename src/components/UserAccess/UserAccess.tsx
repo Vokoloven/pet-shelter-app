@@ -18,6 +18,8 @@ import { selectAccessUser } from 'redux/accessSlice/selectAccessUser'
 import { getAccessUserData } from 'redux/accessSlice/getAccessUserData.service'
 import { AppDispatch } from 'redux/store'
 import BasicTable from './Table'
+import { selectTheme } from 'redux/themeSlice/selectTheme'
+import { deepOrange, orange } from '@mui/material/colors'
 
 export type Inputs = {
     email: string
@@ -35,6 +37,7 @@ export const UserAccess = () => {
     const [status, setStatus] = useState<string | null>(null)
     const [data, setData] = useState<string[] | null>(null)
     const { accessUser, loading } = useSelector(selectAccessUser)
+    const { mode } = useSelector(selectTheme)
     const { enqueueSnackbar } = useSnackbar()
     const dispatch = useDispatch<AppDispatch>()
 
@@ -146,7 +149,9 @@ export const UserAccess = () => {
                         mt: 3,
                     }}
                 >
-                    <CircleLoader color="#36d7b7" />
+                    <CircleLoader
+                        color={mode === 'light' ? orange[500] : deepOrange[500]}
+                    />
                 </Box>
             )}
             {loading === 'succeeded' && (

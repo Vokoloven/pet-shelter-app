@@ -1,4 +1,4 @@
-const nameRegExp = /^[a-zA-Z]+$/
+const nameRegExp = /^[a-zA-Zа-яА-Я-а-щА-ЩЬьЮюЯяЇїІіЄєҐґ]+$/
 const descriptionRexExp = /\w/im
 const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 

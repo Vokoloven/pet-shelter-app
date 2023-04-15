@@ -35,33 +35,28 @@ import { useSnackbar } from 'notistack'
 import { getAccessUserData } from 'redux/accessSlice/getAccessUserData.service'
 import { AppDispatch } from 'redux/store'
 import { useNavigate } from 'react-router-dom'
+import { selectAccessUser } from 'redux/accessSlice/selectAccessUser'
+import { AccessType } from 'types/globalTypes'
+import { setAccess } from 'redux/accessSlice/accessSlice'
 
 const pages: Readonly<string[]> = ['Home', 'Gallery', 'Contacts', 'About']
 
-enum Access {
-    ADMIN,
-    MODERATOR,
-}
-
-type UserAccess = {
-    access: number | null
-}
-
 const provider = new GoogleAuthProvider()
 
-export function ResponsiveAppBar({ access }: UserAccess) {
+export function ResponsiveAppBar() {
     const { mode } = useSelector(selectTheme)
     const { user, loggedIn } = useSelector(selectAuth)
+    const { access } = useSelector(selectAccessUser)
     const { enqueueSnackbar } = useSnackbar()
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
 
-    function createMenuData(tab: string | null, access: number | null) {
-        if (tab === 'UserAccess' && access === Access.ADMIN) {
+    function createMenuData(tab: string | null, access: AccessType) {
+        if (tab === 'UserAccess' && access.actualAccess === access.admin) {
             return tab
         } else if (
-            (tab === 'AddPet' && access === Access.MODERATOR) ||
-            access === Access.ADMIN
+            (tab === 'AddPet' && access.actualAccess === access.moderator) ||
+            access.actualAccess === access.admin
         ) {
             return tab
         } else {
@@ -109,6 +104,7 @@ export function ResponsiveAppBar({ access }: UserAccess) {
             signOut(auth)
                 .then(() => {
                     dispatch(logOutUser())
+                    dispatch(setAccess(null))
                     setAnchorEl(null)
                     navigate('/')
                     enqueueSnackbar('You logged out', { variant: 'success' })
@@ -412,11 +408,11 @@ export function ResponsiveAppBar({ access }: UserAccess) {
                                         vertical: 'top',
                                         horizontal: 'right',
                                     }}
-                                    keepMounted
                                     transformOrigin={{
                                         vertical: 'top',
                                         horizontal: 'right',
                                     }}
+                                    keepMounted
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >

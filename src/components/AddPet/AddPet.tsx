@@ -1,9 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useId } from 'react'
 import MultilineTextFields from './Input'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, setDoc, collection } from 'firebase/firestore'
-import { Box } from '@mui/material'
 import { storage, db } from '../../firebase/firebaseConfig'
 import {
     useForm,
@@ -11,15 +10,12 @@ import {
     SubmitErrorHandler,
     FieldErrors,
 } from 'react-hook-form'
-import { CircleLoader } from 'react-spinners'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaAddPet } from 'helpers/validation/schema'
-import { useSnackbar } from 'notistack'
+// import { useSnackbar } from 'notistack'
 import { AppDispatch } from 'redux/store'
 import { getData } from 'redux/getDataSlice/getData.service'
-import { selectData } from 'redux/getDataSlice/selectData'
-import { selectTheme } from 'redux/themeSlice/selectTheme'
-import { deepOrange, orange } from '@mui/material/colors'
+import { useState } from 'react'
 
 export type Inputs = {
     name: string
@@ -33,14 +29,14 @@ export const AddPet = () => {
     const dispatch = useDispatch<AppDispatch>()
     const id = useId()
     const storageRef = ref(storage, `photos/${id}`)
-    const { loading } = useSelector(selectData)
-    const { mode } = useSelector(selectTheme)
+    const [submittedCat, setSubmittedCat] = useState<boolean>(false)
+    const [errors, setErrors] = useState<Partial<Inputs>>({})
 
-    const { register, handleSubmit, setValue } = useForm<Inputs>({
+    const { register, handleSubmit, setValue, reset } = useForm<Inputs>({
         resolver: yupResolver(schemaAddPet),
     })
 
-    const { enqueueSnackbar } = useSnackbar()
+    // const { enqueueSnackbar } = useSnackbar()
 
     const onSubmit: SubmitHandler<Inputs> = ({
         name,
@@ -49,6 +45,7 @@ export const AddPet = () => {
         photo,
         sex,
     }) => {
+        setErrors({})
         const file = new File([photo[0]], 'photo', { type: 'image/jpeg' })
 
         if (file !== null) {
@@ -56,11 +53,13 @@ export const AddPet = () => {
                 if (snapshot) {
                     getDownloadURL(ref(storage, `photos/${id}`)).then((url) => {
                         if (url) {
+                            setSubmittedCat(true)
                             onSubmitCat(name, age, description, url, sex)
                             dispatch(getData('cats'))
-                            enqueueSnackbar('Cat added :)', {
-                                variant: 'success',
-                            })
+                            reset()
+                            setTimeout(() => {
+                                setSubmittedCat(false)
+                            }, 1000)
                         }
                     })
                 }
@@ -75,6 +74,7 @@ export const AddPet = () => {
             'photo',
             'sex',
         ]
+        setErrors({})
         fields.map((item: string) => {
             if (
                 data?.[item as keyof FieldErrors<Inputs>]?.message === undefined
@@ -82,12 +82,18 @@ export const AddPet = () => {
                 return null
             }
 
-            return enqueueSnackbar(
-                `${data?.[item as keyof FieldErrors<Inputs>]?.message}`,
-                {
-                    variant: 'error',
-                }
-            )
+            setErrors((prevState) => ({
+                ...prevState,
+                [item]: data?.[item as keyof FieldErrors<Inputs>]?.message,
+            }))
+
+            return null
+            // return enqueueSnackbar(
+            //     `${data?.[item as keyof FieldErrors<Inputs>]?.message}`,
+            //     {
+            //         variant: 'error',
+            //     }
+            // )
         })
     }
 
@@ -111,22 +117,15 @@ export const AddPet = () => {
 
     return (
         <>
-            {loading === 'pending' && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-                    <CircleLoader
-                        color={mode === 'light' ? orange[500] : deepOrange[500]}
-                    />
-                </Box>
-            )}
-            {loading === 'succeeded' && (
-                <MultilineTextFields
-                    register={register}
-                    handleSubmit={handleSubmit}
-                    onSubmit={onSubmit}
-                    onError={onError}
-                    setValue={setValue}
-                />
-            )}
+            <MultilineTextFields
+                register={register}
+                handleSubmit={handleSubmit}
+                onSubmit={onSubmit}
+                onError={onError}
+                setValue={setValue}
+                submittedCat={submittedCat}
+                errors={errors}
+            />
         </>
     )
 }

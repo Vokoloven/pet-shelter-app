@@ -8,18 +8,17 @@ import {
 } from 'react-hook-form'
 import { Box } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useSnackbar } from 'notistack'
+// import { useSnackbar } from 'notistack'
 import MultilineTextFields from './Input'
 import { schemaUserAccess } from 'helpers/validation/schema'
 import { doc, updateDoc, collection } from 'firebase/firestore'
 import { db } from '../../firebase/firebaseConfig'
-import { CircleLoader } from 'react-spinners'
 import { selectAccessUser } from 'redux/accessSlice/selectAccessUser'
 import { getAccessUserData } from 'redux/accessSlice/getAccessUserData.service'
 import { AppDispatch } from 'redux/store'
 import BasicTable from './Table'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
-import { deepOrange, orange } from '@mui/material/colors'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export type Inputs = {
     email: string
@@ -36,9 +35,11 @@ export const UserAccess = () => {
     const [moderator, setModerator] = useState<boolean>(false)
     const [status, setStatus] = useState<string | null>(null)
     const [data, setData] = useState<string[] | null>(null)
+    const [submittedUser, setSubmittedUser] = useState<boolean>(false)
+    const [errors, setErrors] = useState<Partial<Inputs>>({})
     const { accessUser, loading } = useSelector(selectAccessUser)
     const { mode } = useSelector(selectTheme)
-    const { enqueueSnackbar } = useSnackbar()
+    // const { enqueueSnackbar } = useSnackbar()
     const dispatch = useDispatch<AppDispatch>()
 
     const { register, handleSubmit, setValue } = useForm<Inputs>({
@@ -60,13 +61,15 @@ export const UserAccess = () => {
         const accessRef = doc(db, 'access', `${checkbox}`)
 
         if (data !== null) {
+            setErrors({})
             const duplicateEmails = data.some(
                 (item: any) => item.email === email
             )
             if (duplicateEmails) {
-                enqueueSnackbar(`${email} already added`, {
-                    variant: 'warning',
-                })
+                setErrors({ email: `${email} already added` })
+                // enqueueSnackbar(`${email} already added`, {
+                //     variant: 'warning',
+                // })
                 return
             }
 
@@ -74,8 +77,14 @@ export const UserAccess = () => {
                 [checkbox]: [...data, { email, accessId }],
             })
             dispatch(getAccessUserData())
+            setSubmittedUser(true)
+            setTimeout(() => {
+                setSubmittedUser(false)
+            }, 1000)
         }
     }
+
+    console.log(errors)
 
     const onSubmit: SubmitHandler<Inputs> = ({ email, checkbox }) => {
         setUserAccess(email, checkbox)
@@ -83,17 +92,22 @@ export const UserAccess = () => {
 
     const onError: SubmitErrorHandler<Inputs> = (data) => {
         const fields: Readonly<string[]> = ['email', 'checkbox']
-
+        setErrors({})
         fields.map((item: string) => {
             if (
                 data?.[item as keyof FieldErrors<Inputs>]?.message === undefined
             ) {
                 return null
             } else {
-                return enqueueSnackbar(
-                    `${data?.[item as keyof FieldErrors<Inputs>]?.message}`,
-                    { variant: 'error' }
-                )
+                setErrors((prevState) => ({
+                    ...prevState,
+                    [item]: data?.[item as keyof FieldErrors<Inputs>]?.message,
+                }))
+                return null
+                // return enqueueSnackbar(
+                //     `${data?.[item as keyof FieldErrors<Inputs>]?.message}`,
+                //     { variant: 'error' }
+                // )
             }
         })
     }
@@ -126,6 +140,10 @@ export const UserAccess = () => {
                 admin: filteredAdmins,
             })
             dispatch(getAccessUserData())
+            setSubmittedUser(true)
+            setTimeout(() => {
+                setSubmittedUser(false)
+            }, 1000)
         }
         if (status === 'moderator') {
             const filteredModerators = accessUser[1]?.moderator.filter(
@@ -136,38 +154,43 @@ export const UserAccess = () => {
                 moderator: filteredModerators,
             })
             dispatch(getAccessUserData())
+            setSubmittedUser(true)
+            setTimeout(() => {
+                setSubmittedUser(false)
+            }, 1000)
         }
     }
 
     return (
         <>
-            {loading === 'pending' && (
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        mt: 3,
-                    }}
-                >
-                    <CircleLoader
-                        color={mode === 'light' ? orange[500] : deepOrange[500]}
-                    />
-                </Box>
-            )}
-            {loading === 'succeeded' && (
-                <Box>
-                    <MultilineTextFields
-                        register={register}
-                        handleSubmit={handleSubmit}
-                        onSubmit={onSubmit}
-                        onError={onError}
-                        onHandleChange={onHandleChange}
-                        admin={admin}
-                        moderator={moderator}
-                    />
+            <Box>
+                <MultilineTextFields
+                    register={register}
+                    handleSubmit={handleSubmit}
+                    onSubmit={onSubmit}
+                    onError={onError}
+                    onHandleChange={onHandleChange}
+                    admin={admin}
+                    moderator={moderator}
+                    submittedUser={submittedUser}
+                    errors={errors}
+                />
+                {loading === 'pending' && (
+                    <Box sx={{ display: 'flex', mt: 3 }}>
+                        <CircularProgress
+                            sx={{
+                                color:
+                                    mode === 'light'
+                                        ? 'primary.main'
+                                        : 'secondary.main',
+                            }}
+                        />
+                    </Box>
+                )}
+                {loading === 'succeeded' && (
                     <BasicTable onClickHandler={onClickHandler} />
-                </Box>
-            )}
+                )}
+            </Box>
         </>
     )
 }

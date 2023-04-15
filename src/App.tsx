@@ -6,7 +6,6 @@ import { Routes, Route } from 'react-router-dom'
 import { Home } from 'components/Home/Home'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
-
 import { About } from 'components/About/About'
 import { Contacts } from 'components/Contacts/Contacts'
 import { Gallery } from 'components/Gallery.tsx/Gallery'

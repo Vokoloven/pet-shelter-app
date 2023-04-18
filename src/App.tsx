@@ -7,6 +7,7 @@ import { Home } from 'components/Home/Home'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { About } from 'components/About/About'
+import { Favorite } from 'components/Favorite/Favorite'
 import { Contacts } from 'components/Contacts/Contacts'
 import { Gallery } from 'components/Gallery.tsx/Gallery'
 import { NotFound } from 'components/NotFound/NotFound'
@@ -21,24 +22,29 @@ import { closeSnackbar } from 'notistack'
 import { IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { getAccessUserData } from 'redux/accessSlice/getAccessUserData.service'
+import { getFavoriteData } from 'redux/getDataFavoriteSlice/getFavoriteData.service'
 import { useAccess } from 'hooks/useAccess'
+import { selectAuth } from 'redux/authSlice/selectAuth'
 
 export const App = () => {
     const { mode } = useSelector(selectTheme)
+    const { loggedIn, user } = useSelector(selectAuth)
     const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
     const dispatch = useDispatch<AppDispatch>()
     const isFirstRender = useRef<boolean>(true)
 
     useAccess()
-
     useEffect(() => {
         if (isFirstRender.current) {
             dispatch(getData('cats'))
             dispatch(getAccessUserData())
+            if (loggedIn) {
+                dispatch(getFavoriteData(user?.email))
+            }
             isFirstRender.current = false
             return
         }
-    }, [dispatch, isFirstRender])
+    }, [dispatch, isFirstRender, loggedIn, user?.email])
 
     return (
         <ThemeProvider theme={theme}>
@@ -86,6 +92,7 @@ export const App = () => {
                         <Route path={'gallery'} element={<Gallery />} />
                         <Route path={'contacts'} element={<Contacts />} />
                         <Route path={'about'} element={<About />} />
+                        <Route path={'favorite'} element={<Favorite />} />
                         <Route
                             path={'addpet'}
                             element={

@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Unstable_Grid2'
 import RecipeReviewCard from './Card'
-import { selectData } from 'redux/getDataSlice/selectData'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
 import CircularProgress from '@mui/material/CircularProgress'
 import { doc, setDoc } from 'firebase/firestore'
@@ -14,23 +13,13 @@ import { AppDispatch } from 'redux/store'
 import { selectFavoriteData } from 'redux/getDataFavoriteSlice/selectFavoriteData'
 
 export default function ResponsiveGrid() {
-    const { data, loading } = useSelector(selectData)
     const { mode } = useSelector(selectTheme)
     const { user } = useSelector(selectAuth)
     const dispatch = useDispatch<AppDispatch>()
-    const { favoriteData } = useSelector(selectFavoriteData)
+    const { favoriteData, loading } = useSelector(selectFavoriteData)
     const favoriteDataRef = doc(db, 'favorites', `${user?.email}`)
 
-    const favoriteAddData = async (item: DocumentData) => {
-        const data = [...(favoriteData as []), item]
-
-        if (user !== null) {
-            await setDoc(favoriteDataRef, { data })
-            dispatch(getFavoriteData(user?.email))
-        }
-    }
-
-    const onClickHandleFavorite = async (petId: string, item: DocumentData) => {
+    const onClickHandleFavorite = async (petId: string) => {
         const coincidence = favoriteData.some(
             (value: DocumentData) => value.petId === petId
         )
@@ -43,7 +32,6 @@ export default function ResponsiveGrid() {
             dispatch(getFavoriteData(user?.email))
             return
         }
-        favoriteAddData(item)
     }
 
     return (
@@ -67,8 +55,8 @@ export default function ResponsiveGrid() {
                         spacing={{ xs: 2, md: 3 }}
                         columns={{ xs: 4, sm: 8, md: 12, lg: 16 }}
                     >
-                        {data?.length > 0 &&
-                            data.map((item) => (
+                        {favoriteData?.length > 0 &&
+                            favoriteData.map((item: DocumentData) => (
                                 <Grid
                                     xs={4}
                                     sm={4}

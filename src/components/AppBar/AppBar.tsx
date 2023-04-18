@@ -21,6 +21,7 @@ import LightModeIcon from '@mui/icons-material/LightMode'
 import AddModeratorIcon from '@mui/icons-material/AddModerator'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import GoogleIcon from '@mui/icons-material/Google'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import Tooltip from '@mui/material/Tooltip'
 import LogoutIcon from '@mui/icons-material/Logout'
 import LoginIcon from '@mui/icons-material/Login'
@@ -38,9 +39,9 @@ import { useNavigate } from 'react-router-dom'
 import { selectAccessUser } from 'redux/accessSlice/selectAccessUser'
 import { AccessType } from 'types/globalTypes'
 import { setAccess } from 'redux/accessSlice/accessSlice'
+import { createMenuData } from './createMenuData'
 
 const pages: Readonly<string[]> = ['Home', 'Gallery', 'Contacts', 'About']
-
 const provider = new GoogleAuthProvider()
 
 export function ResponsiveAppBar() {
@@ -51,23 +52,6 @@ export function ResponsiveAppBar() {
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
 
-    function createMenuData(tab: string | null, access: AccessType) {
-        if (tab === 'UserAccess' && access.actualAccess === access.admin) {
-            return tab
-        } else if (
-            (tab === 'AddPet' && access.actualAccess === access.moderator) ||
-            access.actualAccess === access.admin
-        ) {
-            return tab
-        } else {
-            return null
-        }
-    }
-    const menuData = [
-        createMenuData('UserAccess', access),
-        createMenuData('AddPet', access),
-    ]
-
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     )
@@ -75,6 +59,11 @@ export function ResponsiveAppBar() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
         null
     )
+    const menuData = [
+        createMenuData('UserAccess', access),
+        createMenuData('AddPet', access),
+        createMenuData('Favorite', access),
+    ]
     const open = Boolean(anchorEl)
     const id = open ? 'simple-popover' : undefined
 
@@ -450,6 +439,9 @@ export function ResponsiveAppBar() {
                                                             {item ===
                                                                 'AddPet' &&
                                                                 'Add Pet'}
+                                                            {item ===
+                                                                'Favorite' &&
+                                                                'Favorite'}
                                                         </Typography>
                                                         {item ===
                                                             'UserAccess' && (
@@ -466,6 +458,19 @@ export function ResponsiveAppBar() {
                                                         )}
                                                         {item === 'AddPet' && (
                                                             <PetsIcon
+                                                                sx={{
+                                                                    ml: 1,
+                                                                    color:
+                                                                        mode ===
+                                                                        'light'
+                                                                            ? 'primary.main'
+                                                                            : 'secondary.main',
+                                                                }}
+                                                            />
+                                                        )}
+                                                        {item ===
+                                                            'Favorite' && (
+                                                            <FavoriteIcon
                                                                 sx={{
                                                                     ml: 1,
                                                                     color:

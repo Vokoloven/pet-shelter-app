@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles'
-import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardMedia from '@mui/material/CardMedia'
@@ -13,18 +12,9 @@ import Typography from '@mui/material/Typography'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
 import { DocumentData } from 'firebase/firestore'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { doc, deleteDoc } from 'firebase/firestore'
-import { db } from '../../firebase/firebaseConfig'
-import { getData } from 'redux/getDataSlice/getData.service'
-import { AppDispatch } from 'redux/store'
-import { selectAccessUser } from 'redux/accessSlice/selectAccessUser'
 import { selectFavoriteData } from 'redux/getDataFavoriteSlice/selectFavoriteData'
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -33,11 +23,7 @@ interface ExpandMoreProps extends IconButtonProps {
 
 type Items = {
     item: DocumentData
-    onClickHandleFavorite: (
-        petId: string,
-        item: DocumentData,
-        _: React.MouseEvent
-    ) => void
+    onClickHandleFavorite: (petId: string, _: React.MouseEvent) => void
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -58,25 +44,7 @@ export default function RecipeReviewCard({
     const { mode } = useSelector(selectTheme)
     const { favoriteData } = useSelector(selectFavoriteData)
     const [expanded, setExpanded] = useState(false)
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
-
-    const { access } = useSelector(selectAccessUser)
-    const open = Boolean(anchorEl)
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget)
-    }
-    const dispatch = useDispatch<AppDispatch>()
-
-    const onClickHandle = async (petId: string) => {
-        await deleteDoc(doc(db, 'cats', petId))
-        dispatch(getData('cats'))
-        handleClose()
-    }
-
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
 
     const handleExpandClick = () => {
         setExpanded(!expanded)
@@ -106,59 +74,6 @@ export default function RecipeReviewCard({
                         {item?.name[0]}
                     </Avatar>
                 }
-                action={
-                    access.actualAccess === access.admin ||
-                    access.actualAccess === access.moderator ? (
-                        <Box>
-                            <IconButton
-                                id="basic-button"
-                                aria-label="button"
-                                aria-controls={open ? 'basic-menu' : undefined}
-                                aria-haspopup="true"
-                                aria-expanded={open ? 'true' : undefined}
-                                onClick={handleClick}
-                            >
-                                <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'right',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                            >
-                                <MenuItem
-                                    onClick={onClickHandle.bind(
-                                        null,
-                                        item?.petId,
-                                        item?.name
-                                    )}
-                                    sx={{
-                                        color:
-                                            mode === 'light'
-                                                ? 'primary.main'
-                                                : 'secondary.main',
-                                    }}
-                                >
-                                    Delete
-                                    <DeleteForeverIcon sx={{ ml: 1 }} />
-                                </MenuItem>
-                            </Menu>
-                        </Box>
-                    ) : (
-                        false
-                    )
-                }
                 title={item?.name}
                 subheader={`Age: ${item?.age} | Sex: ${item?.sex}`}
             />
@@ -177,15 +92,11 @@ export default function RecipeReviewCard({
             <CardActions disableSpacing>
                 <IconButton
                     aria-label="add to favorites"
-                    onClick={onClickHandleFavorite.bind(
-                        null,
-                        item?.petId,
-                        item
-                    )}
+                    onClick={onClickHandleFavorite.bind(null, item?.petId)}
                 >
                     <FavoriteIcon
                         sx={{
-                            color: isFavorite ? 'primary.error' : 'inherit',
+                            color: 'primary.error',
                         }}
                     />
                 </IconButton>

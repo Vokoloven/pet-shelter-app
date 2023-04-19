@@ -26,8 +26,7 @@ export default function BasicTable({ onClickHandler }: Handler) {
 
     return (
         <>
-            {' '}
-            <TableContainer component={Paper} sx={{ mt: 3, maxWidth: 400 }}>
+            <TableContainer component={Paper} sx={{ mt: 5, maxWidth: 400 }}>
                 <Table sx={{ maxWidth: 400 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>

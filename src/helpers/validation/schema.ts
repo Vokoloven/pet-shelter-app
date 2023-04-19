@@ -18,7 +18,7 @@ export const schemaAddPet = yup.object().shape({
         .string()
         .matches(regExp.descriptionRexExp, 'Please fill the description field')
         .min(8)
-        .max(120)
+        .max(1500)
         .required(),
     photo: yup
         .mixed()

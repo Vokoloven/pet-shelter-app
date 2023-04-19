@@ -4,11 +4,13 @@ import { getData } from './getData.service'
 
 interface ICatsData {
     data: DocumentData[]
+    favoriteData: DocumentData[]
     loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 }
 
 const initialState = {
     data: [],
+    favoriteData: [],
     loading: 'idle',
 } as ICatsData
 

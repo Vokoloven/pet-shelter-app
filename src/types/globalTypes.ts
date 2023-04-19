@@ -18,3 +18,9 @@ export type CustomTheme = {
         }
     }
 }
+
+export type AccessType = {
+    actualAccess: number | null
+    admin: number | null
+    moderator: number | null
+}

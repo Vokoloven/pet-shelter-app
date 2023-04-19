@@ -1,5 +1,5 @@
 import { CustomTheme } from 'types/globalTypes'
-import { grey, deepOrange, green, orange } from '@mui/material/colors'
+import { grey, deepOrange, green, orange, red } from '@mui/material/colors'
 
 export const getDesignTokens = (mode: string): CustomTheme => ({
     palette: {
@@ -11,9 +11,12 @@ export const getDesignTokens = (mode: string): CustomTheme => ({
                       light: deepOrange[50],
                       main: orange[500],
                       dark: orange[900],
+                      success: green[500],
+                      error: red[500],
                       contrastText: '#fff',
                   },
                   divider: green[200],
+                  successHover: green[700],
                   text: {
                       primary: grey[900],
                       secondary: grey[800],
@@ -31,6 +34,8 @@ export const getDesignTokens = (mode: string): CustomTheme => ({
                       light: grey[900],
                       main: grey[500],
                       dark: grey[900],
+                      success: green[500],
+                      error: red[500],
                       contrastText: '#fff',
                   },
                   secondary: {
@@ -39,6 +44,7 @@ export const getDesignTokens = (mode: string): CustomTheme => ({
                       dark: deepOrange['A700'],
                       contrastText: '#000',
                   },
+                  successHover: green[700],
                   divider: grey[700],
                   background: {
                       default: grey[900],

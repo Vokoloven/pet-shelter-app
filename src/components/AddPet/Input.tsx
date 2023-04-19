@@ -9,6 +9,9 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import CircularProgress from '@mui/material/CircularProgress'
+import { selectData } from 'redux/getDataSlice/selectData'
+import FormHelperText from '@mui/material/FormHelperText'
 
 import {
     UseFormRegister,
@@ -25,6 +28,8 @@ type Props = {
     onSubmit: SubmitHandler<Inputs>
     onError: SubmitErrorHandler<Inputs>
     setValue: UseFormSetValue<Inputs>
+    submittedCat: boolean
+    errors: Partial<Inputs>
 }
 
 export default function MultilineTextFields({
@@ -33,8 +38,25 @@ export default function MultilineTextFields({
     onSubmit,
     onError,
     setValue,
+    submittedCat,
+    errors,
 }: Props) {
     const { mode } = useSelector(selectTheme)
+    const { loading } = useSelector(selectData)
+
+    const buttonSx = {
+        '&:hover': {
+            backgroundColor:
+                mode === 'dark' ? 'secondary.dark' : 'primary.dark',
+        },
+        backgroundColor: mode === 'light' ? 'primary.main' : 'secondary.main',
+        ...(submittedCat && {
+            backgroundColor: 'primary.success',
+            '&:hover': {
+                backgroundColor: 'successHover',
+            },
+        }),
+    }
 
     const handleChange = (event: SelectChangeEvent) => {
         setValue('sex', event.target.value as string)
@@ -57,6 +79,8 @@ export default function MultilineTextFields({
                     maxRows={4}
                     variant="standard"
                     {...register('name')}
+                    error={!!errors?.name ? true : false}
+                    helperText={!!errors?.name ? errors.name : null}
                 />
                 <TextField
                     id="age"
@@ -64,6 +88,8 @@ export default function MultilineTextFields({
                     maxRows={4}
                     variant="standard"
                     {...register('age')}
+                    error={!!errors?.age ? true : false}
+                    helperText={!!errors?.age ? errors.age : null}
                 />
                 <TextField
                     id="description"
@@ -72,10 +98,17 @@ export default function MultilineTextFields({
                     rows={4}
                     variant="standard"
                     {...register('description')}
+                    error={!!errors?.description ? true : false}
+                    helperText={
+                        !!errors?.description ? errors.description : null
+                    }
                 />
             </Box>
             <Box sx={{ minWidth: 120 }}>
-                <FormControl sx={{ mt: 3, width: '100px' }}>
+                <FormControl
+                    sx={{ mt: 3, width: '100px' }}
+                    error={!!errors?.sex ? true : false}
+                >
                     <InputLabel id="demo-simple-select-label">Sex</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
@@ -88,30 +121,46 @@ export default function MultilineTextFields({
                         <MenuItem value={'Male'}>Male</MenuItem>
                         <MenuItem value={'Female'}>Female</MenuItem>
                     </Select>
+                    {!!errors?.sex ? (
+                        <FormHelperText>{errors.sex}</FormHelperText>
+                    ) : null}
                 </FormControl>
             </Box>
-            <Box sx={{ display: 'flex', mt: 3 }}>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                        '&:hover': {
-                            backgroundColor:
-                                mode === 'dark'
-                                    ? 'secondary.dark'
-                                    : 'primary.dark',
-                        },
-                        backgroundColor:
-                            mode === 'dark' ? 'secondary.main' : 'primary.main',
-                    }}
-                >
-                    Add Pet
-                </Button>
+            <Box sx={{ display: 'flex', mt: 3, alignItems: 'center' }}>
+                <Box sx={{ position: 'relative' }}>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        disabled={loading === 'pending' ? true : false}
+                        sx={buttonSx}
+                    >
+                        {loading === 'pending' ? 'Loading...' : 'Add Pet'}
+                    </Button>
+                    {loading === 'pending' && (
+                        <CircularProgress
+                            size={24}
+                            sx={{
+                                color: 'primary.success',
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                marginTop: '-12px',
+                                marginLeft: '-12px',
+                            }}
+                        />
+                    )}
+                </Box>
                 <IconButton
                     color="primary"
                     aria-label="upload picture"
                     component="label"
-                    sx={{ ml: 7 }}
+                    sx={{
+                        ml: 7,
+                        color:
+                            mode === 'light'
+                                ? 'primary.main'
+                                : 'secondary.main',
+                    }}
                 >
                     <input
                         hidden
@@ -122,13 +171,18 @@ export default function MultilineTextFields({
                     <PhotoCamera
                         sx={{
                             color:
-                                mode === 'dark'
-                                    ? 'secondary.main'
-                                    : 'primary.main',
+                                mode === 'light'
+                                    ? 'primary.main'
+                                    : 'secondary.main',
                         }}
                     />
                 </IconButton>
             </Box>
+            {!!errors?.photo && (
+                <FormHelperText sx={{ color: 'primary.error' }}>
+                    {errors?.photo}
+                </FormHelperText>
+            )}
         </Box>
     )
 }

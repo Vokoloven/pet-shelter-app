@@ -1,5 +1,5 @@
 import ResponsiveGrid from './Grids'
 
-export const Gallery = () => {
+export const Favorite = () => {
     return <ResponsiveGrid />
 }

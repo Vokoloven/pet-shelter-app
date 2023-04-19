@@ -15,6 +15,7 @@ import ShareIcon from '@mui/icons-material/Share'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import Menu from '@mui/material/Menu'
+import Popover from '@mui/material/Popover'
 import MenuItem from '@mui/material/MenuItem'
 import { DocumentData } from 'firebase/firestore'
 import { useSelector, useDispatch } from 'react-redux'
@@ -26,6 +27,9 @@ import { getData } from 'redux/getDataSlice/getData.service'
 import { AppDispatch } from 'redux/store'
 import { selectAccessUser } from 'redux/accessSlice/selectAccessUser'
 import { selectFavoriteData } from 'redux/getDataFavoriteSlice/selectFavoriteData'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import TelegramIcon from '@mui/icons-material/Telegram'
+import { FacebookShareButton, TelegramShareButton } from 'react-share'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -60,12 +64,13 @@ export default function RecipeReviewCard({
     const [expanded, setExpanded] = useState(false)
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
-
+    const [popover, setPopover] = React.useState<HTMLButtonElement | null>(null)
     const { access } = useSelector(selectAccessUser)
     const open = Boolean(anchorEl)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
     }
+    const url = window.location.href
     const dispatch = useDispatch<AppDispatch>()
 
     const onClickHandle = async (petId: string) => {
@@ -89,6 +94,17 @@ export default function RecipeReviewCard({
 
         setIsFavorite(coincidence)
     }, [favoriteData, item?.petId])
+
+    const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setPopover(event.currentTarget)
+    }
+
+    const handlePopoverClose = () => {
+        setPopover(null)
+    }
+
+    const openPopover = Boolean(popover)
+    const popoverId = openPopover ? 'simple-popover' : undefined
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -189,9 +205,43 @@ export default function RecipeReviewCard({
                         }}
                     />
                 </IconButton>
-                <IconButton aria-label="share">
+                <IconButton aria-label="share" onClick={handlePopoverClick}>
                     <ShareIcon />
                 </IconButton>
+                <Popover
+                    id={popoverId}
+                    open={openPopover}
+                    anchorEl={popover}
+                    onClose={handlePopoverClose}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                >
+                    <FacebookShareButton url={url} hashtag={'#CatsShelter'}>
+                        <FacebookIcon
+                            sx={{
+                                color:
+                                    mode === 'light'
+                                        ? 'primary.main'
+                                        : 'secondary.main',
+                                fontSize: '32px',
+                            }}
+                        />
+                    </FacebookShareButton>
+                    <TelegramShareButton url={url} title={item?.name}>
+                        <TelegramIcon
+                            sx={{
+                                color:
+                                    mode === 'light'
+                                        ? 'primary.main'
+                                        : 'secondary.main',
+                                fontSize: '32px',
+                                ml: 1,
+                            }}
+                        />
+                    </TelegramShareButton>
+                </Popover>
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}

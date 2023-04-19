@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -10,12 +10,10 @@ import Avatar from '@mui/material/Avatar'
 import IconButton, { IconButtonProps } from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import ShareIcon from '@mui/icons-material/Share'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { DocumentData } from 'firebase/firestore'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
-import { selectFavoriteData } from 'redux/getDataFavoriteSlice/selectFavoriteData'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -42,21 +40,11 @@ export default function RecipeReviewCard({
     onClickHandleFavorite,
 }: Items) {
     const { mode } = useSelector(selectTheme)
-    const { favoriteData } = useSelector(selectFavoriteData)
     const [expanded, setExpanded] = useState(false)
-    const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
     const handleExpandClick = () => {
         setExpanded(!expanded)
     }
-
-    useEffect(() => {
-        const coincidence = favoriteData.some(
-            (value: DocumentData) => value.petId === item?.petId
-        )
-
-        setIsFavorite(coincidence)
-    }, [favoriteData, item?.petId])
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -99,9 +87,6 @@ export default function RecipeReviewCard({
                             color: 'primary.error',
                         }}
                     />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
                 </IconButton>
                 <ExpandMore
                     expand={expanded}

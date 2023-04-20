@@ -30,6 +30,9 @@ import { selectFavoriteData } from 'redux/getDataFavoriteSlice/selectFavoriteDat
 import FacebookIcon from '@mui/icons-material/Facebook'
 import TelegramIcon from '@mui/icons-material/Telegram'
 import { FacebookShareButton, TelegramShareButton } from 'react-share'
+import { CardActionArea } from '@mui/material'
+import { selectAuth } from 'redux/authSlice/selectAuth'
+import { NavLink } from 'react-router-dom'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -66,6 +69,7 @@ export default function RecipeReviewCard({
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
     const [popover, setPopover] = React.useState<HTMLButtonElement | null>(null)
     const { access } = useSelector(selectAccessUser)
+    const { loggedIn } = useSelector(selectAuth)
     const open = Boolean(anchorEl)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
@@ -178,33 +182,43 @@ export default function RecipeReviewCard({
                 title={item?.name}
                 subheader={`Age: ${item?.age} | Sex: ${item?.sex}`}
             />
-            <CardMedia
-                component="img"
-                height="194"
-                image={item?.photoUrl}
-                alt="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    {`${item?.description.substring(0, 100).trim()}`}
-                    {item?.description?.length > 100 ? '...' : null}
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton
-                    aria-label="add to favorites"
-                    onClick={onClickHandleFavorite.bind(
-                        null,
-                        item?.petId,
-                        item
-                    )}
-                >
-                    <FavoriteIcon
-                        sx={{
-                            color: isFavorite ? 'primary.error' : 'inherit',
-                        }}
+            <CardActionArea
+                sx={{
+                    color: mode === 'light' ? 'primary.main' : 'secondary.main',
+                }}
+            >
+                <NavLink to={`/gallery/${item?.petId}`}>
+                    <CardMedia
+                        component="img"
+                        height="194"
+                        image={item?.photoUrl}
+                        alt="Paella dish"
                     />
-                </IconButton>
+                    <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                            {`${item?.description.substring(0, 100).trim()}`}
+                            {item?.description?.length > 100 ? '...' : null}
+                        </Typography>
+                    </CardContent>
+                </NavLink>
+            </CardActionArea>
+            <CardActions disableSpacing>
+                {loggedIn && (
+                    <IconButton
+                        aria-label="add to favorites"
+                        onClick={onClickHandleFavorite.bind(
+                            null,
+                            item?.petId,
+                            item
+                        )}
+                    >
+                        <FavoriteIcon
+                            sx={{
+                                color: isFavorite ? 'primary.error' : 'inherit',
+                            }}
+                        />
+                    </IconButton>
+                )}
                 <IconButton aria-label="share" onClick={handlePopoverClick}>
                     <ShareIcon />
                 </IconButton>

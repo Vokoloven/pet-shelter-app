@@ -88,7 +88,6 @@ export default function RecipeReviewCard({
             .catch((error) => {
                 console.log(error)
             })
-
         await deleteDoc(doc(db, 'cats', petId))
         dispatch(getData('cats'))
         handleClose()

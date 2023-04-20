@@ -33,6 +33,8 @@ import { FacebookShareButton, TelegramShareButton } from 'react-share'
 import { CardActionArea } from '@mui/material'
 import { selectAuth } from 'redux/authSlice/selectAuth'
 import { NavLink } from 'react-router-dom'
+import { storage } from '../../firebase/firebaseConfig'
+import { ref, deleteObject } from 'firebase/storage'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -77,7 +79,16 @@ export default function RecipeReviewCard({
     const url = window.location.href
     const dispatch = useDispatch<AppDispatch>()
 
-    const onClickHandle = async (petId: string) => {
+    const onClickHandle = async (petId: string, photoUrl: string) => {
+        const catPhotoRef = ref(storage, `${photoUrl}`)
+        deleteObject(catPhotoRef)
+            .then(() => {
+                // File deleted successfully
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
         await deleteDoc(doc(db, 'cats', petId))
         dispatch(getData('cats'))
         handleClose()
@@ -161,7 +172,7 @@ export default function RecipeReviewCard({
                                     onClick={onClickHandle.bind(
                                         null,
                                         item?.petId,
-                                        item?.name
+                                        item?.photoUrl
                                     )}
                                     sx={{
                                         color:
@@ -192,7 +203,7 @@ export default function RecipeReviewCard({
                         component="img"
                         height="194"
                         image={item?.photoUrl}
-                        alt="Paella dish"
+                        alt={item?.name}
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">

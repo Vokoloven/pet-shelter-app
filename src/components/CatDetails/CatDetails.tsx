@@ -73,7 +73,7 @@ export const CatDetails = () => {
                                 [theme.breakpoints.down('sm')]: {
                                     display: 'block',
                                     maxWidth: '100%',
-                                    height: 'auto',
+                                    height: px2vw(200, 200),
                                 },
                             })}
                         />

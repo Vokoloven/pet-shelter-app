@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux'
-import { useId } from 'react'
 import MultilineTextFields from './Input'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, setDoc, collection } from 'firebase/firestore'
@@ -27,7 +26,7 @@ export type Inputs = {
 
 export const AddPet = () => {
     const dispatch = useDispatch<AppDispatch>()
-    const id = useId()
+    const id = Date.now()
     const storageRef = ref(storage, `photos/${id}`)
     const [submittedCat, setSubmittedCat] = useState<boolean>(false)
     const [errors, setErrors] = useState<Partial<Inputs>>({})

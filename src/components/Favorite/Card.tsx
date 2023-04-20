@@ -77,7 +77,7 @@ export default function RecipeReviewCard({
                         component="img"
                         height="194"
                         image={item?.photoUrl}
-                        alt="Paella dish"
+                        alt={item?.name}
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">

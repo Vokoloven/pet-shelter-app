@@ -76,7 +76,7 @@ export default function RecipeReviewCard({
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
     }
-    const url = window.location.href
+    const url = `${window.location.href}/${petId}`
     const dispatch = useDispatch<AppDispatch>()
 
     const onClickHandle = async (petId: string, photoUrl: string) => {

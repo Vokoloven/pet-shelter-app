@@ -11,7 +11,7 @@ root.render(
     <StrictMode>
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-                <BrowserRouter basename="pet-shelter-app">
+                <BrowserRouter>
                     <App />
                 </BrowserRouter>
             </PersistGate>

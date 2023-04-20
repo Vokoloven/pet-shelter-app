@@ -25,6 +25,7 @@ import { getAccessUserData } from 'redux/accessSlice/getAccessUserData.service'
 import { getFavoriteData } from 'redux/getDataFavoriteSlice/getFavoriteData.service'
 import { useAccess } from 'hooks/useAccess'
 import { selectAuth } from 'redux/authSlice/selectAuth'
+import { CatDetails } from 'components/CatDetails/CatDetails'
 
 export const App = () => {
     const { mode } = useSelector(selectTheme)
@@ -56,6 +57,11 @@ export const App = () => {
                     a: {
                         textDecoration: 'none',
                         color: 'inherit',
+                    },
+                    img: {
+                        display: 'block',
+                        maxWidth: '100%',
+                        height: 'auto',
                     },
                 }}
             />
@@ -90,6 +96,10 @@ export const App = () => {
                     <Route path={'/'} element={<ResponsiveAppBar />}>
                         <Route index element={<Home />} />
                         <Route path={'gallery'} element={<Gallery />} />
+                        <Route
+                            path={'gallery/:petId'}
+                            element={<CatDetails />}
+                        />
                         <Route path={'contacts'} element={<Contacts />} />
                         <Route path={'about'} element={<About />} />
                         <Route path={'favorite'} element={<Favorite />} />

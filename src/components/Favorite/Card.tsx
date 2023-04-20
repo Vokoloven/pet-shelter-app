@@ -14,6 +14,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { DocumentData } from 'firebase/firestore'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
+import { CardActionArea } from '@mui/material'
+import { NavLink } from 'react-router-dom'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -65,18 +67,26 @@ export default function RecipeReviewCard({
                 title={item?.name}
                 subheader={`Age: ${item?.age} | Sex: ${item?.sex}`}
             />
-            <CardMedia
-                component="img"
-                height="194"
-                image={item?.photoUrl}
-                alt="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    {`${item?.description.substring(0, 100).trim()}`}
-                    {item?.description?.length > 100 ? '...' : null}
-                </Typography>
-            </CardContent>
+            <CardActionArea
+                sx={{
+                    color: mode === 'light' ? 'primary.main' : 'secondary.main',
+                }}
+            >
+                <NavLink to={`/gallery/${item?.petId}`}>
+                    <CardMedia
+                        component="img"
+                        height="194"
+                        image={item?.photoUrl}
+                        alt="Paella dish"
+                    />
+                    <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                            {`${item?.description.substring(0, 100).trim()}`}
+                            {item?.description?.length > 100 ? '...' : null}
+                        </Typography>
+                    </CardContent>
+                </NavLink>
+            </CardActionArea>
             <CardActions disableSpacing>
                 <IconButton
                     aria-label="add to favorites"

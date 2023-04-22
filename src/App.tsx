@@ -34,6 +34,8 @@ export const App = () => {
     const dispatch = useDispatch<AppDispatch>()
     const isFirstRender = useRef<boolean>(true)
 
+    console.log('Test')
+
     useAccess()
     useEffect(() => {
         if (isFirstRender.current) {

@@ -23,7 +23,6 @@ export const getAccessUserData = createAsyncThunk(
 
             return data
         } catch (err: any) {
-            console.log(err)
             return rejectWithValue(err)
         }
     }

@@ -5,6 +5,7 @@ import Instagram from 'images/icons/instagram.png'
 import Telegram from 'images/icons/telegram.png'
 import { Social } from './Social'
 import { googleMapSize } from 'utils/gogleMapSize'
+import { Person } from './Person'
 
 const windowWidth = window.screen.width
 
@@ -22,6 +23,8 @@ export const Contacts = () => {
                 }}
             >
                 <Titles title={'Our contacts'} icon={'contacts'} />
+                <Person contactNumber={'Лора: +380 97 552 96 96'} />
+                <Person contactNumber={'Тетяна: +380 63 686 13 00'} />
             </Box>
             <Box
                 sx={{

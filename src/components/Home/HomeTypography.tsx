@@ -36,7 +36,7 @@ export const HomeTypography = () => {
                     },
                 })}
             >
-                Hi! You are welcome on Cats Shelter Website
+                Hi! You are welcome on Cats Shelter Homepage
             </Typography>
             <Typography
                 variant="body1"

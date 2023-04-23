@@ -7,6 +7,8 @@ import SavingsIcon from '@mui/icons-material/Savings'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { deepOrange } from '@mui/material/colors'
+import Mono from 'images/icons/mono.png'
+import Privat from 'images/icons/privat.png'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -70,21 +72,49 @@ export function BasicModal() {
                 >
                     <Typography
                         id="modal-modal-title"
-                        variant="h6"
+                        variant="h4"
                         component="h2"
                     >
                         Donates
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Atque, illum laboriosam! Ipsam et nam nesciunt at eum
-                        dolor corrupti, possimus ratione neque quisquam
-                        perspiciatis dolorum totam, eaque unde nisi magni? Lorem
-                        ipsum dolor sit amet consectetur adipisicing elit. Alias
-                        possimus atque ad reiciendis molestias! At alias
-                        necessitatibus soluta iusto a, ex assumenda repudiandae
-                        amet dolore ab unde sapiente omnis quaerat.
+                    <Typography variant={'body1'} sx={{ mt: 2 }}>
+                        Наша група працює на добровільних засадах і ніякого
+                        допоміжного фінансування ми не отримуємо. Тому ніколи не
+                        відмовляємось від підтримки фінансової, закупки корма та
+                        наповнювача і автодопомоги. За отримані  кошти
+                        обов'язково звітуємось. Закріплюємо номери карт, для
+                        бажаючих нас підтримати. Донати кормом також приймаємо.
                     </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+                        <Box
+                            component={'img'}
+                            src={Mono}
+                            alt={'monobank'}
+                            sx={{ width: '50px' }}
+                        />
+                        <Typography
+                            component={'p'}
+                            variant={'h6'}
+                            sx={{ ml: 2 }}
+                        >
+                            4441114442317689 Воловенко Лора
+                        </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+                        <Box
+                            component={'img'}
+                            src={Privat}
+                            alt={'monobank'}
+                            sx={{ width: '50px' }}
+                        />
+                        <Typography
+                            component={'p'}
+                            variant={'h6'}
+                            sx={{ ml: 2 }}
+                        >
+                            4149609003418318 Лукашина Тетяна
+                        </Typography>
+                    </Box>
                 </Box>
             </Modal>
         </div>

@@ -20,19 +20,19 @@ export const Titles = ({ title, icon }: Props) => {
                 component={'h2'}
                 sx={(theme) => ({
                     fontWeight: 700,
-                    fontSize: px2vw(30),
+                    fontSize: px2vw(40),
                     color: mode === 'light' ? 'primary.main' : 'secondary.main',
                     [theme.breakpoints.down('xl')]: {
-                        fontSize: px2vw(30, 1300),
+                        fontSize: px2vw(40, 1300),
                     },
                     [theme.breakpoints.down('lg')]: {
-                        fontSize: px2vw(30, 900),
+                        fontSize: px2vw(30, 800),
                     },
                     [theme.breakpoints.down('md')]: {
-                        fontSize: px2vw(30, 600),
+                        fontSize: px2vw(30, 500),
                     },
                     [theme.breakpoints.down('sm')]: {
-                        fontSize: px2vw(30, 600),
+                        fontSize: px2vw(30, 500),
                     },
                 })}
             >
@@ -41,7 +41,7 @@ export const Titles = ({ title, icon }: Props) => {
             {icon === 'contacts' && (
                 <ContactPhoneIcon
                     sx={(theme) => ({
-                        ml: 3,
+                        ml: 1,
                         fontSize: px2vw(30),
                         color:
                             mode === 'light'
@@ -65,7 +65,7 @@ export const Titles = ({ title, icon }: Props) => {
             {icon === 'social' && (
                 <ConnectWithoutContactIcon
                     sx={(theme) => ({
-                        ml: 3,
+                        ml: 1,
                         fontSize: px2vw(30),
                         color:
                             mode === 'light'
@@ -89,7 +89,7 @@ export const Titles = ({ title, icon }: Props) => {
             {icon === 'location' && (
                 <LocationOnIcon
                     sx={(theme) => ({
-                        ml: 3,
+                        ml: 1,
                         fontSize: px2vw(30),
                         color:
                             mode === 'light'

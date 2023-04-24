@@ -22,28 +22,33 @@ export const useAccess = () => {
     const { accessUser } = useSelector(selectAccessUser)
     const {
         user: { email },
+        loggedIn,
     } = useSelector(selectAuth)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(setAdmin(Access.ADMIN))
-        dispatch(setModerator(Access.MODERATOR))
-        if (accessUser.length > 0) {
-            const admin = accessUser[0]?.admin
-            const moderator = accessUser[1]?.moderator
+        if (loggedIn) {
+            dispatch(setAdmin(Access.ADMIN))
+            dispatch(setModerator(Access.MODERATOR))
+            if (accessUser.length > 0) {
+                const admin = accessUser[0]?.admin
+                const moderator = accessUser[1]?.moderator
 
-            const adminStatus = admin.some((item: User) => item.email === email)
-            const moderatorStatus = moderator.some(
-                (item: User) => item.email === email
-            )
+                const adminStatus = admin.some(
+                    (item: User) => item.email === email
+                )
+                const moderatorStatus = moderator.some(
+                    (item: User) => item.email === email
+                )
 
-            if (adminStatus) {
-                dispatch(setAccess(Access.ADMIN))
-            } else if (moderatorStatus) {
-                dispatch(setAccess(Access.MODERATOR))
-            } else {
-                setAccess(null)
+                if (adminStatus) {
+                    dispatch(setAccess(Access.ADMIN))
+                } else if (moderatorStatus) {
+                    dispatch(setAccess(Access.MODERATOR))
+                } else {
+                    setAccess(null)
+                }
             }
         }
-    }, [accessUser, dispatch, email])
+    }, [accessUser, dispatch, email, loggedIn])
 }

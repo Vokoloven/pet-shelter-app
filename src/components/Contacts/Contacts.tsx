@@ -6,6 +6,7 @@ import Telegram from 'images/icons/telegram.png'
 import { Social } from './Social'
 import { googleMapSize } from 'utils/gogleMapSize'
 import { Person } from './Person'
+import Paper from '@mui/material/Paper'
 
 const windowWidth = window.screen.width
 
@@ -14,56 +15,72 @@ console.log()
 export const Contacts = () => {
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Box
+            <Paper
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
                     flexDirection: 'column',
                     mt: 3,
+                    ml: 'auto',
+                    mr: 'auto',
+                    pl: 3,
+                    pr: 3,
+                    pb: 3,
                 }}
             >
                 <Titles title={'Our contacts'} icon={'contacts'} />
                 <Person contactNumber={'Лора: +380 97 552 96 96'} />
                 <Person contactNumber={'Тетяна: +380 63 686 13 00'} />
-            </Box>
-            <Box
+            </Paper>
+            <Paper
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
                     flexDirection: 'column',
                     mt: 3,
+                    ml: 'auto',
+                    mr: 'auto',
+                    pl: 3,
+                    pr: 3,
+                    pb: 3,
                 }}
             >
                 <Titles title={'We are in social network'} icon={'social'} />
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Social
-                    imgUrl={Facebook}
-                    alt={'facebook'}
-                    pl={0}
-                    href={'https://facebook.com/groups/1136278427079955/'}
-                />
-                <Social
-                    imgUrl={Instagram}
-                    alt={'instagram'}
-                    pl={3}
-                    href={
-                        'https://instagram.com/kartonnyy.budynok?igshid=YmMyMTA2M2Y='
-                    }
-                />
-                <Social
-                    imgUrl={Telegram}
-                    alt={'telegram'}
-                    pl={3}
-                    href={'https://t.me/voluntaryGatne'}
-                />
-            </Box>
-            <Box
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Social
+                        imgUrl={Facebook}
+                        alt={'facebook'}
+                        pl={0}
+                        href={'https://facebook.com/groups/1136278427079955/'}
+                    />
+                    <Social
+                        imgUrl={Instagram}
+                        alt={'instagram'}
+                        pl={3}
+                        href={
+                            'https://instagram.com/kartonnyy.budynok?igshid=YmMyMTA2M2Y='
+                        }
+                    />
+                    <Social
+                        imgUrl={Telegram}
+                        alt={'telegram'}
+                        pl={3}
+                        href={'https://t.me/voluntaryGatne'}
+                    />
+                </Box>
+            </Paper>
+
+            <Paper
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
                     flexDirection: 'column',
                     mt: 3,
+                    ml: 'auto',
+                    mr: 'auto',
+                    pl: 3,
+                    pr: 3,
+                    pb: 3,
                 }}
             >
                 <Titles title={'Our Location'} icon={'location'} />
@@ -79,7 +96,7 @@ export const Contacts = () => {
                         referrerPolicy="no-referrer-when-downgrade"
                     ></iframe>
                 </Box>
-            </Box>
+            </Paper>
         </Box>
     )
 }

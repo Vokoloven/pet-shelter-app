@@ -1,10 +1,10 @@
 import { Box } from '@mui/system'
-import MasonryImageList from './ImageList'
+import MasonryImageList from './MasonryImageList'
 import { Titles } from './Titles'
 
 export const About = () => {
     return (
-        <Box>
+        <Box sx={{ pb: 3 }}>
             <Titles />
             <MasonryImageList />
         </Box>

@@ -6,7 +6,7 @@ import { itemsDataMasonry } from './itemsDataMasonry'
 export default function MasonryImageList() {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-            <Box sx={{ width: 700, height: 450 }}>
+            <Box sx={{ width: 700, height: 1050 }}>
                 <ImageList variant="masonry" cols={3} gap={8}>
                     {itemsDataMasonry.map((item) => (
                         <ImageListItem key={item}>

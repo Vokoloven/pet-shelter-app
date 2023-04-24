@@ -4,7 +4,7 @@ import { Titles } from './Titles'
 
 export const About = () => {
     return (
-        <Box sx={{ pb: 3 }}>
+        <Box sx={{ pb: 1 }}>
             <Titles />
             <MasonryImageList />
         </Box>

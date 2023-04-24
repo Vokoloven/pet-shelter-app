@@ -10,8 +10,6 @@ import Paper from '@mui/material/Paper'
 
 const windowWidth = window.screen.width
 
-console.log()
-
 export const Contacts = () => {
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -29,8 +27,8 @@ export const Contacts = () => {
                 }}
             >
                 <Titles title={'Our contacts'} icon={'contacts'} />
-                <Person contactNumber={'Лора: +3 80 97 552 96 96'} />
-                <Person contactNumber={'Тетяна: +3 80 63 686 13 00'} />
+                <Person contactNumber={'Лора: +380 97 552 96 96'} />
+                <Person contactNumber={'Тетяна: +380 63 686 13 00'} />
             </Paper>
             <Paper
                 sx={{
@@ -78,8 +76,8 @@ export const Contacts = () => {
                     mt: 3,
                     ml: 'auto',
                     mr: 'auto',
-                    pl: 3,
-                    pr: 3,
+                    pl: 1,
+                    pr: 1,
                     pb: 3,
                 }}
             >

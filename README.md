@@ -49,7 +49,7 @@ In project relized root access. You can add **`ADMIN`** or **`MODERATOR`** acces
 </div>
 
 Only **`ADMIN`** or **`MODERATOR`** can add new pet
-<img align='top' height='100px' src='https://user-images.githubusercontent.com/48805990/234224707-3a9cb927-17aa-42b6-b32f-3fbb37afbef9.jpg' alt='add-pet-menu'>
+<img align='top' height='200px' src='https://user-images.githubusercontent.com/48805990/234224707-3a9cb927-17aa-42b6-b32f-3fbb37afbef9.jpg' alt='add-pet-menu'>
 
 
 

@@ -41,3 +41,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 **`Front-End`** relized by ReactJs + TypeScript. **`Back-End`** relized by [Firebase](https://firebase.google.com/).
 
 All `API_KEYS` protected by .env. You can find in root folder .env.example with examples of `API_KEYS`.
+
+In project relized root access.

@@ -81,7 +81,7 @@ export const UserAccess = () => {
     }
 
     const onSubmit: SubmitHandler<Inputs> = ({ email, checkbox }) => {
-        setUserAccess(email, checkbox)
+        setUserAccess(email.toLowerCase(), checkbox)
     }
 
     const onError: SubmitErrorHandler<Inputs> = (data) => {

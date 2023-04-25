@@ -37,4 +37,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ---
 ## About Project
+pet-shelter-app it's live application for small community witch help's hompless cat's as usual.
 
+Front-end relized by ReactJs + TypeScript
+Back-end relized by firebase. 

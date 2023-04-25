@@ -44,6 +44,6 @@ All `API_KEYS` protected by .env. You can find in root folder .env.example with 
 
 In project relized root access. You can add `ADMIN` or `MODERATOR` access.
 <div align='left'>
-<img height='25px' src='https://user-images.githubusercontent.com/48805990/234205559-5e6890d3-deb1-4f51-8d71-65e1872ceb3f.jpg' alt='access-menu'>
+<img height='100px' src='https://user-images.githubusercontent.com/48805990/234205559-5e6890d3-deb1-4f51-8d71-65e1872ceb3f.jpg' alt='access-menu'>
 </div>
 

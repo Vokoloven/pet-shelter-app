@@ -11,7 +11,6 @@ import {
 } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaAddPet } from 'helpers/validation/schema'
-// import { useSnackbar } from 'notistack'
 import { AppDispatch } from 'redux/store'
 import { getData } from 'redux/getDataSlice/getData.service'
 import { useState } from 'react'
@@ -34,8 +33,6 @@ export const AddPet = () => {
     const { register, handleSubmit, setValue, reset } = useForm<Inputs>({
         resolver: yupResolver(schemaAddPet),
     })
-
-    // const { enqueueSnackbar } = useSnackbar()
 
     const onSubmit: SubmitHandler<Inputs> = ({
         name,
@@ -87,12 +84,6 @@ export const AddPet = () => {
             }))
 
             return null
-            // return enqueueSnackbar(
-            //     `${data?.[item as keyof FieldErrors<Inputs>]?.message}`,
-            //     {
-            //         variant: 'error',
-            //     }
-            // )
         })
     }
 

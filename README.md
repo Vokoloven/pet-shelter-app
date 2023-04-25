@@ -46,7 +46,7 @@ In project relized root access. You can add **`ADMIN`** or **`MODERATOR`** acces
 <div>
 <img align='top' height='100px' src='https://user-images.githubusercontent.com/48805990/234205559-5e6890d3-deb1-4f51-8d71-65e1872ceb3f.jpg' alt='access-menu'>
 <img align='top' height='200px' src='https://user-images.githubusercontent.com/48805990/234207871-fb27776d-31de-4691-b2d3-8208fffcfc38.jpg' alt='access-page'>
-</div>/.
+</div>\.
 
 Only **`ADMIN`** or **`MODERATOR`** can add new pet
 <div>

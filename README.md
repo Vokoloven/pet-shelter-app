@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -14,10 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -39,8 +35,26 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+---
+## Description
+[Pet Shelter App](https://pet-shelter-app.netlify.app/) it's live application for small community wich help's hompless cat's as usual.\
+You can **`authorized`** by **`Google`** and add favorite cat's into your list.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**`Front-End`** relized by ReactJs + TypeScript. **`Back-End`** relized by [Firebase](https://firebase.google.com/).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+All **`API_KEYS`** protected by .env. You can find in root folder .env.example with examples of **`API_KEYS`**.
+
+In project relized root access. You can add **`ADMIN`** or **`MODERATOR`** access:
+<div>
+<img align='top' height='100px' src='https://user-images.githubusercontent.com/48805990/234205559-5e6890d3-deb1-4f51-8d71-65e1872ceb3f.jpg' alt='access-menu'>
+<img align='top' height='200px' src='https://user-images.githubusercontent.com/48805990/234207871-fb27776d-31de-4691-b2d3-8208fffcfc38.jpg' alt='access-page'>
+</div>
+<br>
+
+Only **`ADMIN`** or **`MODERATOR`** can add new pet:
+<div>
+<img align='top' height='300px' src='https://user-images.githubusercontent.com/48805990/234224707-3a9cb927-17aa-42b6-b32f-3fbb37afbef9.jpg' alt='add-pet-menu'>
+</div>
+<br>
+
+**`Validation`** of all fields done by [React Hook Forms](https://react-hook-form.com/) + schema's

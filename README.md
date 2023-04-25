@@ -39,4 +39,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Description
 [Pet Shelter App](https://pet-shelter-app.netlify.app/) it's live application for small community witch help's hompless cat's as usual.\
 **`Front-End`** relized by ReactJs + TypeScript. **`Back-End`** relized by [Firebase](https://firebase.google.com/).\
+
 All `API_KEYS` protected by .env. You can find in root folder .env.example with examples of `API_KEYS`.

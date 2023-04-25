@@ -53,6 +53,4 @@ Only **`ADMIN`** or **`MODERATOR`** can add new pet:
 <img align='top' height='300px' src='https://user-images.githubusercontent.com/48805990/234224707-3a9cb927-17aa-42b6-b32f-3fbb37afbef9.jpg' alt='add-pet-menu'>
 </div>
 
-
-
-
+Validation of all fields done by [React Hook Forms](https://react-hook-form.com/)

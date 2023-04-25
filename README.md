@@ -40,8 +40,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 [Pet Shelter App](https://pet-shelter-app.netlify.app/) it's live application for small community witch help's hompless cat's as usual.\
 **`Front-End`** relized by ReactJs + TypeScript. **`Back-End`** relized by [Firebase](https://firebase.google.com/).
 
-All `API_KEYS` protected by .env. You can find in root folder .env.example with examples of `API_KEYS`.
-In project relized root access. You can add `ADMIN` or `MODERATOR` access.
+All **`API_KEYS`** protected by .env. You can find in root folder .env.example with examples of **`API_KEYS`**.
+In project relized root access. You can add **`ADMIN`** or **`MODERATOR`** access.
 <div>
 <img height='100px' src='https://user-images.githubusercontent.com/48805990/234205559-5e6890d3-deb1-4f51-8d71-65e1872ceb3f.jpg' alt='access-menu'>
 </div>

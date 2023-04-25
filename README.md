@@ -42,4 +42,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 All `API_KEYS` protected by .env. You can find in root folder .env.example with examples of `API_KEYS`.
 
-In project relized root access.
+In project relized root access. You can add `ADMIN` or `MODERATOR` access.
+![Menu](https://user-images.githubusercontent.com/48805990/234205559-5e6890d3-deb1-4f51-8d71-65e1872ceb3f.jpg)
+
+

@@ -38,5 +38,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ---
 ## About Project
 [Pet Shelter App](https://pet-shelter-app.netlify.app/) it's live application for small community witch help's hompless cat's as usual.\
-Front-end relized by ReactJs + TypeScript.\
-Back-end relized by [Firebase](https://firebase.google.com/).
+Front-end relized by ReactJs + TypeScript. Back-end relized by [Firebase](https://firebase.google.com/).

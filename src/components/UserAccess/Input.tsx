@@ -135,24 +135,6 @@ export default function MultilineTextFields({
                     </FormHelperText>
                 ) : null}
             </FormGroup>
-            {/* <Box sx={{ display: 'flex', mt: 3 }}>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                        '&:hover': {
-                            backgroundColor:
-                                mode === 'dark'
-                                    ? 'secondary.dark'
-                                    : 'primary.dark',
-                        },
-                        backgroundColor:
-                            mode === 'dark' ? 'secondary.main' : 'primary.main',
-                    }}
-                >
-                    Add Access
-                </Button>
-            </Box> */}
             <Box sx={{ display: 'flex', mt: 1 }}>
                 <Box sx={{ position: 'relative' }}>
                     <Button

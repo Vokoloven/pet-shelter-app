@@ -39,7 +39,6 @@ export const UserAccess = () => {
     const [errors, setErrors] = useState<Partial<Inputs>>({})
     const { accessUser, loading } = useSelector(selectAccessUser)
     const { mode } = useSelector(selectTheme)
-    // const { enqueueSnackbar } = useSnackbar()
     const dispatch = useDispatch<AppDispatch>()
 
     const { register, handleSubmit, setValue } = useForm<Inputs>({
@@ -67,9 +66,6 @@ export const UserAccess = () => {
             )
             if (duplicateEmails) {
                 setErrors({ email: `${email} already added` })
-                // enqueueSnackbar(`${email} already added`, {
-                //     variant: 'warning',
-                // })
                 return
             }
 
@@ -83,8 +79,6 @@ export const UserAccess = () => {
             }, 1000)
         }
     }
-
-    console.log(errors)
 
     const onSubmit: SubmitHandler<Inputs> = ({ email, checkbox }) => {
         setUserAccess(email, checkbox)
@@ -104,10 +98,6 @@ export const UserAccess = () => {
                     [item]: data?.[item as keyof FieldErrors<Inputs>]?.message,
                 }))
                 return null
-                // return enqueueSnackbar(
-                //     `${data?.[item as keyof FieldErrors<Inputs>]?.message}`,
-                //     { variant: 'error' }
-                // )
             }
         })
     }

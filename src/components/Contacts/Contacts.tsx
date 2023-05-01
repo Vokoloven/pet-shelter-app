@@ -26,7 +26,7 @@ export const Contacts = () => {
                     pb: 3,
                 }}
             >
-                <Titles title={'Our contacts'} icon={'contacts'} />
+                <Titles title={'Our Contacts'} icon={'contacts'} />
                 <Person contactNumber={'Лора: +380 97 552 96 96'} />
                 <Person contactNumber={'Тетяна: +380 63 686 13 00'} />
             </Paper>
@@ -43,7 +43,7 @@ export const Contacts = () => {
                     pb: 3,
                 }}
             >
-                <Titles title={'We are in social network'} icon={'social'} />
+                <Titles title={'We Are In Social Network'} icon={'social'} />
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Social
                         imgUrl={Facebook}

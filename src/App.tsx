@@ -16,7 +16,11 @@ import { AddPet } from 'components/AddPet/AddPet'
 import { AppDispatch } from 'redux/store'
 import { getData } from 'redux/getDataSlice/getData.service'
 import { useRef } from 'react'
-import { AdminRoute, ModeratorRoute } from 'routes/PrivateRoutes'
+import {
+    AdminRoute,
+    ModeratorRoute,
+    AuthorizedRoute,
+} from 'routes/PrivateRoutes'
 import { SnackbarProvider } from 'notistack'
 import { closeSnackbar } from 'notistack'
 import { IconButton } from '@mui/material'
@@ -102,7 +106,14 @@ export const App = () => {
                         />
                         <Route path={'contacts'} element={<Contacts />} />
                         <Route path={'about'} element={<About />} />
-                        <Route path={'favorite'} element={<Favorite />} />
+                        <Route
+                            path={'favorite'}
+                            element={
+                                <AuthorizedRoute>
+                                    <Favorite />
+                                </AuthorizedRoute>
+                            }
+                        />
                         <Route
                             path={'addpet'}
                             element={

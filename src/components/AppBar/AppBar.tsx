@@ -60,9 +60,9 @@ export function ResponsiveAppBar() {
         null
     )
     const menuData = [
-        createMenuData('UserAccess', access),
-        createMenuData('AddPet', access),
-        createMenuData('Favorite', access),
+        createMenuData('UserAccess', access, loggedIn),
+        createMenuData('AddPet', access, loggedIn),
+        createMenuData('Favorite', access, loggedIn),
     ]
     const open = Boolean(anchorEl)
     const id = open ? 'simple-popover' : undefined

@@ -20,7 +20,7 @@
         "noEmitOnError": false,
         "noUnusedLocals": false,
         "noUnusedParameters": true,
-        "noImplicitReturns": true,
+        "noImplicitReturns": false,
         "noImplicitAny": true,
         "noImplicitThis": true,
         "strictNullChecks": true

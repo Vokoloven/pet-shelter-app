@@ -120,6 +120,59 @@ export default function RecipeReviewCard({
     const openPopover = Boolean(popover)
     const popoverId = openPopover ? 'simple-popover' : undefined
 
+    const action = () => {
+        if (access.actualAccess !== null) {
+            return (
+                <Box>
+                    <IconButton
+                        id="basic-button"
+                        aria-label="button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                    >
+                        <MoreVertIcon />
+                    </IconButton>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                    >
+                        <MenuItem
+                            onClick={onClickHandle.bind(
+                                null,
+                                item?.petId,
+                                item?.photoUrl
+                            )}
+                            sx={{
+                                color:
+                                    mode === 'light'
+                                        ? 'primary.main'
+                                        : 'secondary.main',
+                            }}
+                        >
+                            Delete
+                            <DeleteForeverIcon sx={{ ml: 1 }} />
+                        </MenuItem>
+                    </Menu>
+                </Box>
+            )
+        }
+    }
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardHeader
@@ -136,59 +189,7 @@ export default function RecipeReviewCard({
                         {item?.name[0]}
                     </Avatar>
                 }
-                action={
-                    access.actualAccess === access.admin ||
-                    access.actualAccess === access.moderator ? (
-                        <Box>
-                            <IconButton
-                                id="basic-button"
-                                aria-label="button"
-                                aria-controls={open ? 'basic-menu' : undefined}
-                                aria-haspopup="true"
-                                aria-expanded={open ? 'true' : undefined}
-                                onClick={handleClick}
-                            >
-                                <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'right',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                            >
-                                <MenuItem
-                                    onClick={onClickHandle.bind(
-                                        null,
-                                        item?.petId,
-                                        item?.photoUrl
-                                    )}
-                                    sx={{
-                                        color:
-                                            mode === 'light'
-                                                ? 'primary.main'
-                                                : 'secondary.main',
-                                    }}
-                                >
-                                    Delete
-                                    <DeleteForeverIcon sx={{ ml: 1 }} />
-                                </MenuItem>
-                            </Menu>
-                        </Box>
-                    ) : (
-                        false
-                    )
-                }
+                action={action()}
                 title={item?.name}
                 subheader={`Age: ${item?.age} | Sex: ${item?.sex}`}
             />

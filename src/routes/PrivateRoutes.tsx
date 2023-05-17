@@ -20,10 +20,7 @@ export const AdminRoute = ({ children }: Props) => {
 export const ModeratorRoute = ({ children }: Props) => {
     const { access } = useSelector(selectAccessUser)
 
-    if (
-        access.actualAccess === access.moderator ||
-        access.actualAccess === access.admin
-    ) {
+    if (access.actualAccess !== null) {
         return <>{children}</>
     } else {
         return <Navigate to={'/'} replace={true} />

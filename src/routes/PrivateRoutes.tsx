@@ -10,7 +10,7 @@ interface Props {
 export const AdminRoute = ({ children }: Props) => {
     const { access } = useSelector(selectAccessUser)
 
-    if (access.actualAccess === access.admin) {
+    if (access.actualAccess === access.admin && access.actualAccess !== null) {
         return <>{children}</>
     } else {
         return <Navigate to={'/'} replace={true} />

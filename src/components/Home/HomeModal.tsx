@@ -100,6 +100,21 @@ export function BasicModal() {
                             4441114442317689 Воловенко Лора
                         </Typography>
                     </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+                        <Box
+                            component={'img'}
+                            src={Privat}
+                            alt={'monobank'}
+                            sx={{ width: '50px' }}
+                        />
+                        <Typography
+                            component={'p'}
+                            variant={'h6'}
+                            sx={{ ml: 2 }}
+                        >
+                            4149609003418318 Лукашина Тетяна
+                        </Typography>
+                    </Box>
                 </Box>
             </Modal>
         </div>

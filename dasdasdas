@@ -1,0 +1,259 @@
+[33mcommit d7ba915e5d1f8ba2b5c02b9cb7f9028eb2eb9e6c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Tue Dec 5 13:12:12 2023 +0200
+
+    fix: Removed Tanya bill
+
+[33mcommit 5763476e2977848837f20446166ac2bb18f9f7f6[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Wed May 17 15:47:58 2023 +0300
+
+    Added additional checks
+
+[33mcommit 13e9824d807ba1f6f6e5b3c6ea9b2508ed19926e[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Wed May 17 14:42:04 2023 +0300
+
+    Added fixes for access
+
+[33mcommit 3ae9da7a94b593b3c7d988e0d6579a1c0977a3aa[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Wed May 17 14:36:19 2023 +0300
+
+    Access checks
+
+[33mcommit f37c9dac6bb27948a822818d861b05376de8e701[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Wed May 17 14:35:09 2023 +0300
+
+    Update access
+
+[33mcommit 3176eab5166970ccb11f034a35af1200bd79b635[m
+Merge: 526f3d3 57514e0
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Wed May 17 14:22:51 2023 +0300
+
+    Merge branch 'main' of https://github.com/Vokoloven/pet-shelter-app
+
+[33mcommit 526f3d3364a4a6df9e5f286b348e3bfd7395f1c0[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Wed May 17 14:22:38 2023 +0300
+
+    Fixed access problem
+
+[33mcommit 57514e086351e32c9571adb6017ca230ee0d99b1[m
+Merge: 93b7dce 3da7a1c
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue May 9 23:09:58 2023 +0300
+
+    Merge pull request #7 from Vokoloven/Vokoloven-patch-1
+    
+    Update README.md
+
+[33mcommit 3da7a1c8804e91a7c0206bf39baef271b684c488[m[33m ([m[1;31morigin/Vokoloven-patch-1[m[33m)[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue May 9 23:09:49 2023 +0300
+
+    Update README.md
+
+[33mcommit 93b7dce49907627066d34f99ce61c9b46f6065ac[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Mon May 1 14:16:11 2023 +0300
+
+    Some remarks
+
+[33mcommit 86cc57621503d5848569527eb8534070df7817a5[m
+Merge: a630138 1a93218
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Tue Apr 25 16:51:56 2023 +0300
+
+    Merge branch 'main' of https://github.com/Vokoloven/pet-shelter-app
+
+[33mcommit a630138bdc0ac3060f96ebab2e88b58698094212[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Tue Apr 25 16:24:59 2023 +0300
+
+    Added fix for UserAccess
+
+[33mcommit 1a93218aad845357971aeafbf273fc50a75dccdc[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 12:15:58 2023 +0300
+
+    Update README.md
+
+[33mcommit a052c5ecb7ebcbdd9eec3a135a3e550fa6a370d1[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 12:15:35 2023 +0300
+
+    Update README.md
+
+[33mcommit f21d4d4aebcba242d877c217cd685a6f1c134b18[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 12:15:22 2023 +0300
+
+    Update README.md
+
+[33mcommit 6a192586891f80f7b21153cb393eb825898f04d4[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 12:15:13 2023 +0300
+
+    Update README.md
+
+[33mcommit 8d5d8418465b26c64bc6f1ef371ed2386096b09f[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 12:14:23 2023 +0300
+
+    Update README.md
+
+[33mcommit 73a48f2d0dc334aca40f4430ee4b562dcd35635b[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 12:13:49 2023 +0300
+
+    Update README.md
+
+[33mcommit f6ecac92968f7c4c8fb439a5e62690d4eb7cf772[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 12:11:01 2023 +0300
+
+    Update README.md
+
+[33mcommit abf7a294ac3ef0c7f4c136e057798e383be2bd3f[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:56:36 2023 +0300
+
+    Update README.md
+
+[33mcommit c410e74600b45a9a001f06de59cf681439df659b[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:56:23 2023 +0300
+
+    Update README.md
+
+[33mcommit a637e00afa8548a4eae9c604a8831315bfe1df77[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:56:06 2023 +0300
+
+    Update README.md
+
+[33mcommit 11f335d4010a1dd0e257832d920233934b28e307[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:55:44 2023 +0300
+
+    Update README.md
+
+[33mcommit 28a270b73b4f245acebf55484388e97ce3c5033d[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:55:33 2023 +0300
+
+    Update README.md
+
+[33mcommit e9773894be00a6b662c46a9a748f23b790b3f0a2[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:55:22 2023 +0300
+
+    Update README.md
+
+[33mcommit 1815a7c9f759a3f557b4b00c0e908e5148b79472[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:55:00 2023 +0300
+
+    Update README.md
+
+[33mcommit 644f2f37c3f658c9150f393ba10b00a4e65b46e1[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:54:38 2023 +0300
+
+    Update README.md
+
+[33mcommit 61eac680b7723a7f3bdd9722450e73d154c55e3f[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:53:21 2023 +0300
+
+    Update README.md
+
+[33mcommit 3302b3c797b5eec536bd215e5ef0c084aca846ef[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:53:07 2023 +0300
+
+    Update README.md
+
+[33mcommit 601657aaff899d512b7ca363994934b0d08a2574[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:52:47 2023 +0300
+
+    Update README.md
+
+[33mcommit 1a9ac6e36ef416fac895072c2337b690f7ff04d8[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:52:31 2023 +0300
+
+    Update README.md
+
+[33mcommit 0482e131533748c9f5b893b34bbbef1bea7eeae3[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:52:06 2023 +0300
+
+    Update README.md
+
+[33mcommit 21a149815592df29c12007cd54ad4dd56ff030e9[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:51:38 2023 +0300
+
+    Update README.md
+
+[33mcommit bf9f9b70eb8d0e836b475d6b8a631e3cbe88a79b[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:51:27 2023 +0300
+
+    Update README.md
+
+[33mcommit b7eeab3e39b8f1fb8946ca537a5a678aa23a73a0[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:51:08 2023 +0300
+
+    Update README.md
+
+[33mcommit 3622d33200e3850ed0732674d58ee62ba800b28f[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:50:55 2023 +0300
+
+    Update README.md
+
+[33mcommit d5d7281d719ede6e8b041754d537375e6e06f7ac[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:50:42 2023 +0300
+
+    Update README.md
+
+[33mcommit 4998a1c6f6e3134d22b8b757222ab598608ee110[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:50:04 2023 +0300
+
+    Update README.md
+
+[33mcommit 0e2ec0a79ffae66b3f123cccfd9613bd5a9a0a96[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:49:33 2023 +0300
+
+    Update README.md
+
+[33mcommit bfdfb4b70ca1e37918f1807b860cc1ad14728f8a[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.github.com>
+Date:   Tue Apr 25 11:49:17 2023 +0300
+
+    Update README.md
+
+[33mcommit f66c3fae51340f1e4a476847cdaf26154ecaf86d[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Tue Apr 25 11:39:46 2023 +0300
+
+    Deleted comments
+
+[33mcommit 83192d6810924881617fab6b63d640a33b7bc729[m
+Author: Ruslan Volovenko <vokoloven@gmail.com>
+Date:   Tue Apr 25 11:33:24 2023 +0300
+
+    Deleted comments
+
+[33mcommit 2ef7e98625f57577b22200afe5f9d26d5b081d1a[m
+Author: Volovenko Ruslan <48805990+Vokoloven@users.noreply.

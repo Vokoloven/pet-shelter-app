@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { deepOrange } from '@mui/material/colors'
 import Mono from 'images/icons/mono.png'
-import Privat from 'images/icons/privat.png'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -98,21 +97,6 @@ export function BasicModal() {
                             sx={{ ml: 2 }}
                         >
                             4441114442317689 Воловенко Лора
-                        </Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-                        <Box
-                            component={'img'}
-                            src={Privat}
-                            alt={'monobank'}
-                            sx={{ width: '50px' }}
-                        />
-                        <Typography
-                            component={'p'}
-                            variant={'h6'}
-                            sx={{ ml: 2 }}
-                        >
-                            4149609003418318 Лукашина Тетяна
                         </Typography>
                     </Box>
                 </Box>

@@ -28,7 +28,6 @@ export const Contacts = () => {
             >
                 <Titles title={'Our Contacts'} icon={'contacts'} />
                 <Person contactNumber={'Лора: +380 97 552 96 96'} />
-                <Person contactNumber={'Тетяна: +380 63 686 13 00'} />
             </Paper>
             <Paper
                 sx={{

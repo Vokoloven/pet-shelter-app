@@ -7,7 +7,9 @@ import SavingsIcon from '@mui/icons-material/Savings'
 import { useSelector } from 'react-redux'
 import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { deepOrange } from '@mui/material/colors'
-import Mono from 'images/icons/mono.png'
+import { MonobankIcon } from 'images/icons/MonobankIcon'
+import { IconButton } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -81,23 +83,19 @@ export function BasicModal() {
                         допоміжного фінансування ми не отримуємо. Тому ніколи не
                         відмовляємось від підтримки фінансової, закупки корма та
                         наповнювача і автодопомоги. За отримані  кошти
-                        обов'язково звітуємось. Закріплюємо номери карт, для
-                        бажаючих нас підтримати. Донати кормом також приймаємо.
+                        обов'язково звітуємось. Закріплюємо банку, для бажаючих
+                        нас підтримати. Донати кормом також приймаємо.
                     </Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-                        <Box
-                            component={'img'}
-                            src={Mono}
-                            alt={'monobank'}
-                            sx={{ width: '50px' }}
-                        />
-                        <Typography
-                            component={'p'}
-                            variant={'h6'}
-                            sx={{ ml: 2 }}
+                        <IconButton
+                            href="https://send.monobank.ua/jar/EhyedUo91"
+                            target="_blank"
+                            rel="noreferrer noopener"
                         >
-                            4441114442317689 Воловенко Лора
-                        </Typography>
+                            <MonobankIcon
+                                dimensions={{ width: '32px', height: '32px' }}
+                            />
+                        </IconButton>
                     </Box>
                 </Box>
             </Modal>

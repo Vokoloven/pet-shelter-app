@@ -90,6 +90,7 @@ export function BasicModal() {
                             href="https://send.monobank.ua/jar/EhyedUo91"
                             target="_blank"
                             rel="noreferrer noopener"
+                            aria-label="Monobank"
                         >
                             <MonobankIcon
                                 dimensions={{ width: '32px', height: '32px' }}

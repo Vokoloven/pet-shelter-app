@@ -9,7 +9,6 @@ import { selectTheme } from 'redux/themeSlice/selectTheme'
 import { deepOrange } from '@mui/material/colors'
 import { MonobankIcon } from 'images/icons/MonobankIcon'
 import { IconButton } from '@mui/material'
-import { Link } from 'react-router-dom'
 
 const style = {
     position: 'absolute' as 'absolute',
